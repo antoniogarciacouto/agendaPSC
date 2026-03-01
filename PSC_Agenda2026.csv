@@ -1,0 +1,11 @@
+﻿"Título da atividade","Unidade","Bloco","Espaço","Data início","Data fim","Recorrente","Horários","Dia inteiro","Subatividade","Área","Status","Responsável","Observações"
+"Jamac","Santa Rita","Santa Rita","Galeria Santa Rita","01/04/2026","30/06/2026","Falso","10:00 - 19:00","Falso","Exposição","Artes Visuais","Confirmada",,
+"Clube Sesc de Leitores","Santa Rita","Santa Rita","Cinema","24/02/2026","24/02/2026","Falso",,"Falso","Roda de Conversa","Literatura","Realizada",,
+"Danças Livres","Caborê","Estúdios","Sala de Dança","01/04/2026","31/12/2026","True","10:00-12:00;19:00-21:00","Falso","Curso","Artes Cênicas","Planejada",,
+"Danças Sociais","Caborê","Estúdios","Sala de Dança","31/03/2026","30/11/2026","True","19:00 - 21:00","Falso","Curso","Artes Cênicas","Planejada",,
+"Decanto de Dança","Caborê","Estúdios","Sala de Dança","04/04/2026","30/11/2026","True","10:00 - 17:00","Falso","Curso","Artes Cênicas","Planejada",,
+"Decanto de Dança","Caborê","Estúdios","Sala de Dança","05/04/2026","30/11/2026","True","10:00 - 17:00","Falso","Curso","Artes Cênicas","Planejada",,
+"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","31/03/2026","30/11/2026","True","14:00 - 17:00","Falso","Curso","Artes Cênicas","Planejada",,
+"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","02/04/2026","30/11/2026","True","14:00 - 17:00","Falso","Curso","Artes Cênicas","Planejada",,
+"Curso Livre de Bordado","Caborê","Ateliês","Ateliê 1","01/04/2026","30/12/2026","True","10:00 - 12:00","Falso","Curso","Artes Cênicas","Planejada",,
+"Curso Livre de Desenho","Caborê","Ateliês","Ateliê 1","31/03/2026","30/11/2026","True","15:00 - 17:00","Falso","Curso","Artes Visuais","Planejada",,
