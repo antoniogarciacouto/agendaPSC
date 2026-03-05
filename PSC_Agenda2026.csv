@@ -1,63 +1,76 @@
-﻿"Título da atividade","Unidade","Bloco","Espaço","Data início","Data fim","Recorrente","Horários","Datas de Registro","Dia inteiro","Subatividade","Área","Status","Responsável","Observações","Segunda"
-"Jamac","Santa Rita","Santa Rita","Galeria Santa Rita","01/01/2026","30/06/2026","Falso","10:00 - 19:00",,"Falso","Exposição","Artes Visuais","Confirmada",,,"Falso"
-"Clube Sesc de Leitores","Santa Rita","Santa Rita","Cinema","24/02/2026","24/02/2026","Falso","19:00-21:00",,"Falso","Roda de Conversa","Literatura","Realizada",,,"Falso"
-"Danças Livres","Caborê","Estúdios","Sala de Dança","01/04/2026","31/12/2026","True","10:00-12:00;19:00-21:00",,"Falso","Curso","Artes Cênicas","Planejada",,,"Falso"
-"Danças Sociais","Caborê","Estúdios","Sala de Dança","31/03/2026","30/11/2026","True","19:00 - 21:00",,"Falso","Curso","Artes Cênicas","Planejada",,,"Falso"
-"Decanto de Dança","Caborê","Estúdios","Sala de Dança","04/04/2026","30/11/2026","True","10:00 - 17:00",,"Falso","Curso","Artes Cênicas","Planejada",,,"Falso"
-"Decanto de Dança","Caborê","Estúdios","Sala de Dança","05/04/2026","30/11/2026","True","10:00 - 17:00",,"Falso","Curso","Artes Cênicas","Planejada",,,"Falso"
-"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","31/03/2026","30/11/2026","True","14:00 - 17:00",,"Falso","Curso","Artes Cênicas","Planejada",,,"Falso"
-"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","02/04/2026","30/11/2026","True","14:00 - 17:00",,"Falso","Curso","Artes Cênicas","Planejada",,,"Falso"
-"Curso Livre de Bordado","Caborê","Ateliês","Ateliê 1","01/04/2026","30/12/2026","True","10:00 - 12:00",,"Falso","Curso","Artes Cênicas","Planejada",,,"Falso"
-"Curso Livre de Desenho","Caborê","Ateliês","Ateliê 1","31/03/2026","30/11/2026","True","15:00 - 17:00",,"Falso","Curso","Artes Visuais","Planejada",,,"Falso"
-"Curso Livre de Desenho","Caborê","Ateliês","Ateliê 1","01/04/2026","31/12/2026","True","15:00 - 17:00",,"Falso","Curso","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","07/05/2026","True","09:00 - 13:00",,"Falso","Oficina","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","06/05/2026","True","19:00 - 21:00",,"Falso","Oficina","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","25/06/2026","True","09:00 - 13:00",,"Falso","Oficina","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","24/06/2026","True","19:00 - 21:00",,"Falso","Oficina","Artes Visuais","Planejada",,,"Falso"
-"Labmais","Caborê","Estúdios","Lab 1,Lab  2","02/06/2026","24/11/2026","True","18:00 - 21:00",,"Falso","Curso","Arte Educação","Planejada",,,"Falso"
-"Labmais","Caborê","Estúdios","Lab 1,Lab  2","04/06/2026","26/11/2026","True","18:00 - 21:00",,"Falso","Curso","Arte Educação","Planejada",,,"Falso"
-"SOPRA Oficina de Sopros","Caborê","Estúdios","Aula Música 1","04/04/2026","28/11/2026","True","09:00 - 12:00",,"Falso","Oficina","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
-"BATUCA Oficina de Percussões","Caborê","Estúdios","Aula Música 1","05/04/2026","29/11/2026","True","09:00 - 12:00",,"Falso","Oficina","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
-"Samba das Trabalhadoras","Caborê","Área Externa","Área Externa","16/05/2026","16/05/2026","Falso","16:00 - 18:00","16/05","Falso","Apresentação","Música","Planejada","Julia Pimenta Tinoco Penha","Teste de Observações","Falso"
-"Residência Artística Minha Música","Santa Rita","Santa Rita","Cinema","01/04/2026","30/06/2026","Falso","10:00 - 13:00",,"Falso","Outro","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
-"Oficina Audiovisual em Primeira Pessoa Minha Música","Santa Rita","Santa Rita","Cinema","15/04/2026","30/04/2026","Falso","14:00 - 16:00",,"Falso","Oficina","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
-"Oficina Roteiro Fílmico Minha Música","Santa Rita","Santa Rita","Cinema","01/05/2026","15/05/2026","Falso","14:00 - 16:00",,"Falso","Oficina","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
-"Agendamento Cine Sesc","Santa Rita","Santa Rita","[]","11/03/2026","11/03/2026","Falso","09:00 -11:00","11/03/2026","Falso","Mediação","Audiovisual","Confirmada","Priscila Souza Rodrigues","Filme: O Auto da Compadecida 
+﻿"Título da atividade","Unidade","Bloco","Espaço","Data início","Data fim","Recorrente","Horários","Datas de Registro","Dia inteiro","Datas de Ocorrência","Subatividade","Área","Status","Responsável","Observações","Segunda"
+"Jamac","Santa Rita","Santa Rita","Galeria Santa Rita","01/01/2026","30/06/2026","Falso","10:00 - 19:00",,"Falso",,"Exposição","Artes Visuais","Confirmada",,,"Falso"
+"Clube Sesc de Leitores","Santa Rita","Santa Rita","Cinema","24/02/2026","24/02/2026","Falso","19:00-21:00",,"Falso",,"Roda de Conversa","Literatura","Realizada",,,"Falso"
+"Danças Livres","Caborê","Estúdios","Sala de Dança","01/04/2026","31/12/2026","True","10:00-12:00;19:00-21:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Danças Sociais","Caborê","Estúdios","Sala de Dança","31/03/2026","30/11/2026","True","19:00 - 21:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Decanto de Dança","Caborê","Estúdios","Sala de Dança","04/04/2026","30/11/2026","True","10:00 - 17:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Decanto de Dança","Caborê","Estúdios","Sala de Dança","05/04/2026","30/11/2026","True","10:00 - 17:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","31/03/2026","30/11/2026","True","14:00 - 17:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","02/04/2026","30/11/2026","True","14:00 - 17:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Curso Livre de Bordado","Caborê","Ateliês","Ateliê 1","01/04/2026","30/12/2026","True","10:00 - 12:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Curso Livre de Desenho","Caborê","Ateliês","Ateliê 1","31/03/2026","30/11/2026","True","15:00 - 17:00",,"Falso",,"Curso","Artes Visuais","Planejada",,,"Falso"
+"Curso Livre de Desenho","Caborê","Ateliês","Ateliê 1","01/04/2026","31/12/2026","True","15:00 - 17:00",,"Falso",,"Curso","Artes Visuais","Planejada",,,"Falso"
+"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","07/05/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
+"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","06/05/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
+"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","25/06/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
+"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","24/06/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
+"Labmais","Caborê","Estúdios","Lab 1,Lab  2","02/06/2026","24/11/2026","True","18:00 - 21:00",,"Falso",,"Curso","Arte Educação","Planejada",,,"Falso"
+"Labmais","Caborê","Estúdios","Lab 1,Lab  2","04/06/2026","26/11/2026","True","18:00 - 21:00",,"Falso",,"Curso","Arte Educação","Planejada",,,"Falso"
+"SOPRA Oficina de Sopros","Caborê","Estúdios","Aula Música 1","04/04/2026","28/11/2026","True","09:00 - 12:00",,"Falso",,"Oficina","Música","Confirmada","Guilherme Castro de Carvalho",,"Falso"
+"BATUCA Oficina de Percussões","Caborê","Estúdios","Aula Música 1","05/04/2026","29/11/2026","True","09:00 - 12:00",,"Falso",,"Oficina","Música","Confirmada","Guilherme Castro de Carvalho",,"Falso"
+"Samba das Trabalhadoras","Caborê","Área Externa","Jequitibá","16/05/2026","16/05/2026","Falso","16:00 - 18:00",,"Falso",,"Apresentação","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
+"Residência Artística Minha Música","Santa Rita","Santa Rita","Cinema","01/04/2026","30/06/2026","Falso","10:00 - 13:00","01, 02, 07, 08, 09, 14, 15, 16, 21, 22, 23, 28, 29 e 30/04.
+ 
+05, 06, 07, 12, 13, 14, 19, 20, 21, 26, 27 e 28/05.
+
+02, 03, 04, 09, 10, 11, 16, 17, 18, 23, 24, 25 e 30/06.","Falso",,"Outro","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
+"Oficina Audiovisual em Primeira Pessoa Minha Música","Santa Rita","Santa Rita","Cinema","15/04/2026","30/04/2026","Falso","14:00 - 16:00",,"Falso",,"Oficina","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
+"Oficina Roteiro Fílmico Minha Música","Santa Rita","Santa Rita","Cinema","01/05/2026","15/05/2026","Falso","14:00 - 16:00",,"Falso",,"Oficina","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
+"Agendamento Cine Sesc","Santa Rita","Santa Rita","[]","11/03/2026","11/03/2026","Falso","09:00 -11:00","11/03/2026","Falso",,"Mediação","Audiovisual","Confirmada","Priscila Souza Rodrigues","Filme: O Auto da Compadecida 
 Quantidade de alunos: 30
 Turma: 700
 Instituição Escola:  E. M. Parque da Mangueira 
 Faixa etária dos alunos: 12-14 anos","Falso"
-"Oficina de Choro ","Caborê","Estúdios","Sala de Música","08/05/2026","08/05/2026","Falso","13:00 - 17:00",,"Falso","Oficina","Música","Planejada","Guilherme Castro de Carvalho","Oficina de Formação Continuada para professores da Rede Municipal de Educação de Paraty, educadores e estudantes de projetos de música da região e demais profissionais do setor.","Falso"
-"Agendamento Cine Sesc ","Santa Rita","Santa Rita","[]","13/03/2026","13/03/2026","Falso","09:00 - 11:00","13/03/2026","Falso","Mediação","Audiovisual","Confirmada","Priscila Souza Rodrigues","Filme: O Auto da Compadecida 2
+"Oficina Semana do Choro","Caborê","Estúdios","Sala de Música","08/05/2026","08/05/2026","Falso","13:00 - 17:00",,"Falso",,"Oficina","Música","Planejada","Guilherme Castro de Carvalho","Oficina de Formação Continuada para professores da Rede Municipal de Educação de Paraty, educadores e estudantes de projetos de música da região e demais profissionais do setor.","Falso"
+"Agendamento Cine Sesc ","Santa Rita","Santa Rita","[]","13/03/2026","13/03/2026","Falso","09:00 - 11:00","13/03/2026","Falso",,"Mediação","Audiovisual","Confirmada","Priscila Souza Rodrigues","Filme: O Auto da Compadecida 2
 Quantidade de alunos: 30
 Turma: 901
 Instituição Escola:  E. M. Parque da Mangueira 
 Faixa etária dos alunos: 14-17 anos","Falso"
-"Visita Mediada Exposição Malassombras","Santa Rita","Santa Rita","[]","10/03/2026","10/03/2026","Falso","10:00 - 11:00","10/03/2026","Falso","Mediação","Artes Visuais","Confirmada","Priscila Souza Rodrigues"," Exposição: Malassombras
+"Visita Mediada Exposição Malassombras","Santa Rita","Santa Rita","[]","10/03/2026","10/03/2026","Falso","10:00 - 11:00","10/03/2026","Falso",,"Mediação","Artes Visuais","Confirmada","Priscila Souza Rodrigues"," Exposição: Malassombras
 Quantidade de alunos: 30
 Turma: 700
 Instituição Escola:  E. M. Parque da Mangueira 
 Faixa etária dos alunos: 11-14 anos","Falso"
-"Visita Mediada a Exposição Malassombras","Santa Rita","Santa Rita","[]","12/03/2026","03/03/2026","Falso","10:00 - 11:00","12/03/2026 ","Falso","Mediação","Artes Visuais","Confirmada","Priscila Souza Rodrigues","Exposição: Malassombras
+"Visita Mediada a Exposição Malassombras","Santa Rita","Santa Rita","[]","12/03/2026","03/03/2026","Falso","10:00 - 11:00","12/03/2026 ","Falso",,"Mediação","Artes Visuais","Confirmada","Priscila Souza Rodrigues","Exposição: Malassombras
 Quantidade de alunos: 30
 Turma: 801
 Instituição Escola:  E. M. Parque da Mangueira 
 Faixa etária dos alunos: 12-15 anos
 ","Falso"
-"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","22/06/2026","26/06/2026","Falso","18:00 - 21:00","23/06, 24/06 e 25/06/2026 ","Falso","Curso","Arte Educação","Confirmada","Priscila Souza Rodrigues","Módulo 1 - Mediação Cultural do Patrimônio - Formação c/ Instrutor Rodrigo","Falso"
-"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","14/07/2026","16/07/2026","Falso","18:00 - 21:00","14/07, 15/07 e 16/07/2026","Falso","Curso","Arte Educação","Confirmada","Priscila Souza Rodrigues","Formação Modulo 2 -   Bases da Mediação Cultural: acesso e participação dos públicos - Renata Sampaio","Falso"
-"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","04/08/2026","06/08/2026","Falso","18:00 - 21:00","04/08, 05/08  e 06/08/2026","Falso","Curso","Arte Educação","Confirmada","Priscila Souza Rodrigues","Formação Modulo 3: Públicos da Mediação Cultural  - Valquíria Prates","Falso"
-"Teatralidades","Caborê","Estúdios","[]","07/08/2026","05/12/2026","True","19:00 às 22:00",,"Falso","Apresentação","Artes Cênicas","Planejada","Maira Jeannyse Acunha Paiva","Ações de fruição - apresentações abertas ao público, de teatro, dança e circo.","Falso"
-"Palco Giratório - residências artísticas","Caborê","Estúdios","[]","30/07/2026","07/09/2026","True","10:00 às 22:00","30/08 e 31/08, 01 a 07/09/2026","Falso","Outro","Artes Cênicas","Confirmada","Maira Jeannyse Acunha Paiva","Residências artísticas e apresentações nos Quilombos: Campinho da Independência e Bracuhy.","Falso"
-"Circoladô","Caborê","Ateliês","[]","18/02/2026","02/10/2026","True","08:30 às 15:00",,"Falso","Oficina","Artes Cênicas","Realizada","Maira Jeannyse Acunha Paiva",,"Falso"
-"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","25/08/2026","27/08/2026","Falso","18:00 - 21:00","26/08/2026","Falso","Curso","Arte Educação","Planejada","Priscila Souza Rodrigues","Modulo 4: Mediação Cultural e atividades socioculturais","Falso"
-"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","22/09/2026","24/09/2026","Falso","18:00 - 21:00",,"Falso","Curso","Arte Educação","Planejada","Priscila Souza Rodrigues"," Módulo 5: Mediação Cultural das Artes Visuais, exposições e mediação de leitura","Falso"
-"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","20/10/2026","22/10/2026","Falso","10:00 - 12:00",,"Falso","Curso","Arte Educação","Planejada","Priscila Souza Rodrigues","Módulo 6: Mediação de Artes Cênicas, Música e Audiovisual ","Falso"
-"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","24/11/2026","26/11/2026","Falso","18:00 - 21:00",,"Falso","Curso","Arte Educação","Planejada","Priscila Souza Rodrigues","Módulo 7: Pesquisa em Mediação Cultural: agendamento, registro e avaliação","Falso"
-"Cine Sesc ","Santa Rita","Santa Rita","Cinema","06/03/2026","11/12/2026","True","19:00 - 21:00",,"Falso","Outro","Audiovisual","Confirmada","Priscila Souza Rodrigues",,"Falso"
-"Cine Sesc ","Santa Rita","Santa Rita","Cinema","07/03/2026","15/11/2026","True","16:00 - 18:00",,"Falso","Outro","Audiovisual","Confirmada","Priscila Souza Rodrigues",,"Falso"
-"Cine Sesc","Santa Rita","Santa Rita","Cinema","08/03/2026","12/12/2026","True","16:00 - 18:00",,"Falso","Outro","Arte Educação","Planejada","Priscila Souza Rodrigues",,"Falso"
-"Roda de Choro Dia das Mães","Caborê","Área Externa","Área Externa","10/05/2026","10/05/2026","Falso","16:00 - 18:00",,"Falso","Apresentação","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
-"Ensaio Aberto Partitura Choro","Caborê","Estúdios","Sala de Música","09/05/2026","09/05/2026","Falso","10:00 - 18:00",,"Falso","Apresentação","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
-"Clube Sesc de Leitores - Ciclo 2","Santa Rita","Santa Rita","Sala de Artes Integradas","05/05/2026","19/05/2026","Falso","19:00 - 21:00","Registo fotográfico: 19/05","Falso","Mediação","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
-"Clube Sesc de Leitores - Ciclo 3","Santa Rita","Santa Rita","Sala de Artes Integradas","11/08/2026","25/08/2026","Falso","19:00 - 21:00","Registro fotográfico: 25/08","Falso","Mediação","Literatura","Planejada","Diogo Schmidt Brunner",,"Falso"
+"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","22/06/2026","26/06/2026","Falso","18:00 - 21:00","23/06, 24/06 e 25/06/2026 ","Falso",,"Curso","Arte Educação","Confirmada","Priscila Souza Rodrigues","Módulo 1 - Mediação Cultural do Patrimônio - Formação c/ Instrutor Rodrigo","Falso"
+"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","14/07/2026","16/07/2026","Falso","18:00 - 21:00","14/07, 15/07 e 16/07/2026","Falso",,"Curso","Arte Educação","Confirmada","Priscila Souza Rodrigues","Formação Modulo 2 -   Bases da Mediação Cultural: acesso e participação dos públicos - Renata Sampaio","Falso"
+"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","04/08/2026","06/08/2026","Falso","18:00 - 21:00","04/08, 05/08  e 06/08/2026","Falso",,"Curso","Arte Educação","Confirmada","Priscila Souza Rodrigues","Formação Modulo 3: Públicos da Mediação Cultural  - Valquíria Prates","Falso"
+"Teatralidades","Caborê","Estúdios","[]","07/08/2026","05/12/2026","True","19:00 às 22:00",,"Falso",,"Apresentação","Artes Cênicas","Planejada","Maira Jeannyse Acunha Paiva","Ações de fruição - apresentações abertas ao público, de teatro, dança e circo.","Falso"
+"Palco Giratório - residências artísticas","Caborê","Estúdios","[]","30/07/2026","07/09/2026","True","10:00 às 22:00","30/08 e 31/08, 01 a 07/09/2026","Falso",,"Outro","Artes Cênicas","Confirmada","Maira Jeannyse Acunha Paiva","Residências artísticas e apresentações nos Quilombos: Campinho da Independência e Bracuhy.","Falso"
+"Circoladô","Ação Externa","Ação Externa","Ação Externa","18/02/2026","02/10/2026","True","08:30 às 15:00",,"Falso",,"Oficina","Artes Cênicas","Realizada","Maira Jeannyse Acunha Paiva",,"Falso"
+"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","25/08/2026","27/08/2026","Falso","18:00 - 21:00","26/08/2026","Falso",,"Curso","Arte Educação","Planejada","Priscila Souza Rodrigues","Modulo 4: Mediação Cultural e atividades socioculturais","Falso"
+"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","22/09/2026","24/09/2026","Falso","18:00 - 21:00",,"Falso",,"Curso","Arte Educação","Planejada","Priscila Souza Rodrigues"," Módulo 5: Mediação Cultural das Artes Visuais, exposições e mediação de leitura","Falso"
+"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","20/10/2026","22/10/2026","Falso","10:00 - 12:00",,"Falso",,"Curso","Arte Educação","Planejada","Priscila Souza Rodrigues","Módulo 6: Mediação de Artes Cênicas, Música e Audiovisual ","Falso"
+"Formação Sesc Mediações","Santa Rita","Santa Rita","Cinema","24/11/2026","26/11/2026","Falso","18:00 - 21:00",,"Falso",,"Curso","Arte Educação","Planejada","Priscila Souza Rodrigues","Módulo 7: Pesquisa em Mediação Cultural: agendamento, registro e avaliação","Falso"
+"Cine Sesc ","Santa Rita","Santa Rita","Cinema","06/03/2026","11/12/2026","True","19:00 - 21:00",,"Falso",,"Outro","Audiovisual","Confirmada","Priscila Souza Rodrigues",,"Falso"
+"Cine Sesc ","Santa Rita","Santa Rita","Cinema","07/03/2026","15/11/2026","True","16:00 - 18:00",,"Falso",,"Outro","Audiovisual","Confirmada","Priscila Souza Rodrigues",,"Falso"
+"Cine Sesc","Santa Rita","Santa Rita","Cinema","08/03/2026","12/12/2026","True","16:00 - 18:00",,"Falso",,"Outro","Arte Educação","Planejada","Priscila Souza Rodrigues",,"Falso"
+"Roda de Choro Dia das Mães","Caborê","Área Externa","Jequitibá","10/05/2026","10/05/2026","Falso","16:00 - 18:00",,"Falso",,"Apresentação","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
+"Ensaio Aberto Partitura Choro","Caborê","Estúdios","Sala de Música","09/05/2026","09/05/2026","Falso","10:00 - 18:00",,"Falso",,"Ensaio / Montagem","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
+"Clube Sesc de Leitores - Ciclo 2","Santa Rita","Santa Rita","Sala de Artes Integradas","05/05/2026","19/05/2026","Falso","19:00 - 21:00","19/05","Falso",,"Mediação","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Clube Sesc de Leitores - Ciclo 3","Santa Rita","Santa Rita","Sala de Artes Integradas","11/08/2026","25/08/2026","Falso","19:00 - 21:00","25/08","Falso",,"Mediação","Literatura","Planejada","Diogo Schmidt Brunner",,"Falso"
+"Audições Minha Música","Caborê","Estúdios","Sala de Música","01/07/2026","03/07/2026","Falso","16:00 - 20:00",,"Falso",,"Apresentação","Música","Planejada","Guilherme Castro de Carvalho",,"Falso"
+"Clube Sesc de Leitores - Ciclo 4","Santa Rita","Santa Rita","Sala de Artes Integradas","15/09/2026","29/09/2026","Falso","19:00 - 21:00","29/09","Falso",,"Mediação","Literatura","Planejada","Diogo Schmidt Brunner",,"Falso"
+"Clube Sesc de Leitores - Ciclo 5","Santa Rita","Santa Rita","Sala de Artes Integradas","03/11/2026","17/11/2026","Falso","19:00 - 21:00","17/11","Falso",,"Mediação","Literatura","Planejada","Diogo Schmidt Brunner",,"Falso"
+"Arte da Palavra - Criação Literária 1","Santa Rita","Santa Rita","Sala de Oficinas","08/09/2026","10/09/2026","Falso","18:30 - 21:30","10/09","Falso",,"Oficina","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Arte da Palavra - Oralidades 1","Santa Rita","Santa Rita","Sala de Artes Integradas","05/11/2026","05/11/2026","Falso","19:00","05/11","Falso",,"Apresentação","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Arte da Palavra - Oralidades 2","Santa Rita","Santa Rita","Sala de Artes Integradas","12/11/2026","12/11/2026","Falso","19:00","12/11","Falso",,"Apresentação","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Arte da Palavra - Criação Literária 2","Santa Rita","Santa Rita","Sala de Oficinas","06/10/2026","08/10/2026","Falso","18:30 - 21:30","08/10","Falso",,"Oficina","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Arte da Palavra - Criação Literária 3","Santa Rita","Santa Rita","Sala de Oficinas","20/10/2026","22/10/2026","Falso","18:30 - 21:30","22/10","Falso",,"Oficina","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Arte da Palavra - Oralidades 3","Santa Rita","Santa Rita","Sala de Artes Integradas","19/11/2026","19/11/2026","Falso","19:00","19/11","Falso",,"Apresentação","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
