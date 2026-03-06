@@ -62,12 +62,11 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .conf-ev{font-size:12px;color:var(--text-muted);padding:2px 0}
 .conf-ev+.conf-ev{border-top:1px solid var(--conf-bd);padding-top:4px;margin-top:4px}
 .cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.dow-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:var(--surface2);border-bottom:1px solid var(--border)}
-.dow{padding:8px;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-left:1px solid var(--border);box-sizing:border-box}
-.dow:first-child{border-left:none}
-.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
-.cal-cell{border-left:1px solid var(--border);border-bottom:1px solid var(--border);min-height:100px;padding:6px;min-width:0;overflow:hidden;box-sizing:border-box}
-.cal-cell:nth-child(7n+1){border-left:none}
+.dow-row{display:grid;grid-template-columns:repeat(7,1fr);background:var(--surface2);border-bottom:1px solid var(--border)}
+.dow{padding:8px;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-cell{border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-height:100px;padding:6px}
+.cal-cell:nth-child(7n){border-right:none}
 .cal-cell.other{background:rgba(0,0,0,.2)}
 .day-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
 .cal-cell.today .day-num{background:var(--accent2);color:#0d0f14;border-radius:50%;font-weight:600}
@@ -85,12 +84,15 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .cal-more{font-size:10px;color:var(--text-dim);cursor:pointer;padding:1px 4px;font-family:'DM Mono',monospace}
 .cal-more:hover{color:var(--text-muted)}
 .cal-week{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.wk-hdr{display:grid;grid-template-columns:40px repeat(7,1fr);background:var(--surface2);border-bottom:1px solid var(--border)}
+.wk-hdr{display:grid;grid-template-columns:40px repeat(7,minmax(0,1fr));background:var(--surface2);border-bottom:1px solid var(--border)}
+.wk-allday{display:flex;border-bottom:2px solid var(--border);background:var(--surface2);overflow:hidden}
+.wk-allday-lbl{width:40px;min-width:40px;border-right:1px solid var(--border);font-family:'DM Mono',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center;text-align:center;padding:2px}
+.wk-allday-cols{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));overflow:hidden;min-width:0}
 .wk-dhdr{padding:10px 8px;text-align:center;border-left:1px solid var(--border)}
 .wk-dname{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
 .wk-dnum{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text-muted);margin-top:2px;line-height:1}
 .wk-dhdr.tod .wk-dnum{color:var(--accent2)}
-.wk-body{display:grid;grid-template-columns:40px repeat(7,1fr);max-height:calc(100vh - 160px);overflow-y:auto}
+.wk-body{display:grid;grid-template-columns:40px repeat(7,minmax(0,1fr));max-height:calc(100vh - 160px);overflow-y:auto}
 body.pmode .wk-body{max-height:100%;height:100%}
 .wk-times{border-right:1px solid var(--border);min-width:40px;width:40px;flex-shrink:0}
 .wk-ts{height:48px;border-bottom:1px solid rgba(37,42,56,.5);padding:4px 6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-align:right;overflow:hidden;white-space:nowrap}
@@ -395,45 +397,40 @@ function expandEvents(evs) {
     const dFim    = new Date(ev.dataFim.getFullYear(),    ev.dataFim.getMonth(),    ev.dataFim.getDate());
     const duracaoDias = Math.round((dFim - dInicio) / (1000*60*60*24));
 
-    // Evento NÃO recorrente com Datas de Ocorrência explícitas
-    if (!ev.recorrente && ev.datasOcorrencia && ev.datasOcorrencia.trim()) {
-      const raw2 = ev.datasOcorrencia.replace(/\n/g,' ');
-      const grupoRe2 = /([\d,\s\.e]+)\/([01]\d)/g;
-      let gm2; const datas2 = [];
-      while((gm2 = grupoRe2.exec(raw2)) !== null) {
-        const mes2 = parseInt(gm2[2]), yr2 = ev.dataInicio.getFullYear();
-        (gm2[1].match(/\d+/g)||[]).forEach(n => datas2.push(new Date(yr2, mes2-1, parseInt(n))));
-      }
-      if (datas2.length > 0) {
-        datas2.forEach(data => {
-          if (data < dInicio || data > dFim) return;
-          slots.forEach((sl, si) => {
-            expanded.push({ ...ev, id: uid++, parentId: ev.id, turnoIdx: si,
-              turnoLabel: String(sl.hIni).padStart(2,'0')+':'+String(sl.mIni).padStart(2,'0')+'\u2013'+String(sl.hFim).padStart(2,'0')+':'+String(sl.mFim).padStart(2,'0'),
-              dataInicio: new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hIni, sl.mIni),
-              dataFim:    new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hFim, sl.mFim)
+    // Evento NÃO recorrente: datasOcorrencia → ocorrências por data; senão → blocoLongo
+    if (!ev.recorrente && duracaoDias > 0) {
+      let handled = false;
+      if (ev.datasOcorrencia && ev.datasOcorrencia.trim()) {
+        const raw2 = ev.datasOcorrencia.replace(/\n/g,' ');
+        const grupoRe2 = /([\d,\s\.e]+)\/([01]\d)/g;
+        let gm2; const datas2 = [];
+        while((gm2 = grupoRe2.exec(raw2)) !== null) {
+          const mes2 = parseInt(gm2[2]), yr2 = ev.dataInicio.getFullYear();
+          (gm2[1].match(/\d+/g)||[]).forEach(n => datas2.push(new Date(yr2, mes2-1, parseInt(n))));
+        }
+        if (datas2.length > 0) {
+          datas2.forEach(data => {
+            if (data < dInicio || data > dFim) return;
+            slots.forEach((sl, si) => {
+              expanded.push({ ...ev, id: uid++, parentId: ev.id, turnoIdx: si,
+                turnoLabel: String(sl.hIni).padStart(2,'0')+':'+String(sl.mIni).padStart(2,'0')+'–'+String(sl.hFim).padStart(2,'0')+':'+String(sl.mFim).padStart(2,'0'),
+                dataInicio: new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hIni, sl.mIni),
+                dataFim:    new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hFim, sl.mFim)
+              });
             });
           });
-        });
-        return;
+          handled = true;
+        }
       }
-    }
-
-    // Evento NÃO recorrente de longa duração → bloco único
-    if (!ev.recorrente && duracaoDias > 1) {
-      const sl = slots[0];
-      const ocIni = new Date(dInicio.getFullYear(), dInicio.getMonth(), dInicio.getDate(), sl.hIni, sl.mIni);
-      const ocFim = new Date(dFim.getFullYear(),    dFim.getMonth(),    dFim.getDate(),    sl.hFim, sl.mFim);
-      expanded.push({
-        ...ev,
-        id: uid++,
-        parentId: ev.id,
-        turnoIdx: 0,
-        turnoLabel: ev.horarios || '',
-        dataInicio: ocIni,
-        dataFim: ocFim,
-        blocoLongo: true
-      });
+      if (!handled && duracaoDias > 1) {
+        const sl = slots[0];
+        expanded.push({ ...ev, id: uid++, parentId: ev.id, turnoIdx: 0,
+          turnoLabel: ev.horarios || '',
+          dataInicio: new Date(dInicio.getFullYear(), dInicio.getMonth(), dInicio.getDate(), sl.hIni, sl.mIni),
+          dataFim:    new Date(dFim.getFullYear(),    dFim.getMonth(),    dFim.getDate(),    sl.hFim, sl.mFim),
+          blocoLongo: true
+        });
+      }
       return;
     }
 
@@ -523,7 +520,7 @@ function parseCSV(t){
       status:r['Status']||'',responsavel:r['Responsável']||r['Responsavel']||'',
       observacoes:r['Observações']||r['Observacoes']||'',
       datasRegistro:r['Datas de Registro']||r['Datas de registro']||r['datasRegistro']||'',
-      datasOcorrencia:r['Datas de Ocorr\u00eancia']||r['Datas de Ocorrencia']||''
+      datasOcorrencia:r['Datas de Ocorrência']||r['Datas de Ocorrencia']||''
     };
   }).filter(e=>e.titulo&&e.dataInicio);
 }
@@ -708,83 +705,81 @@ function rOcupacao(){
   // Retorna array de {ev, col, totalCols} — col e totalCols definem left% e width%
   function calcLayout(evs) {
     if(!evs.length) return [];
-    // Agrupa por espaço — colisão só ocorre entre eventos do MESMO espaço
-    const byEspaco = {};
-    evs.forEach(ev=>{
-      const key = (ev.espaco||'').split(',')[0].trim() || '__sem_espaco__';
-      if(!byEspaco[key]) byEspaco[key]=[];
-      byEspaco[key].push(ev);
+    // Ordena por início, depois por duração decrescente
+    const sorted = [...evs].sort((a,b)=>a.dataInicio-b.dataInicio||(b.dataFim-b.dataInicio)-(a.dataFim-a.dataInicio));
+    // Grupos de sobreposição (clique)
+    const groups = [];
+    sorted.forEach(ev=>{
+      let placed=false;
+      for(const g of groups){
+        // Sobrepõe com algum evento do grupo?
+        if(g.some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
+          g.push(ev); placed=true; break;
+        }
+      }
+      if(!placed) groups.push([ev]);
     });
     const result=[];
-    Object.values(byEspaco).forEach(group=>{
-      const sorted=[...group].sort((a,b)=>a.dataInicio-b.dataInicio||(b.dataFim-b.dataInicio)-(a.dataFim-a.dataInicio));
-      // Grupos de sobreposição dentro do mesmo espaço
-      const groups=[];
-      sorted.forEach(ev=>{
+    groups.forEach(g=>{
+      // Dentro do grupo, atribuir colunas sem sobreposição
+      const cols=[[]]; // cols[i] = lista de eventos na coluna i
+      g.forEach(ev=>{
         let placed=false;
-        for(const g of groups){
-          if(g.some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
-            g.push(ev); placed=true; break;
+        for(let ci2=0;ci2<cols.length;ci2++){
+          if(!cols[ci2].some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
+            cols[ci2].push(ev); placed=true;
+            result.push({ev,col:ci2,totalCols:0}); // totalCols preenchido abaixo
+            break;
           }
         }
-        if(!placed) groups.push([ev]);
+        if(!placed){
+          cols.push([ev]);
+          result.push({ev,col:cols.length-1,totalCols:0});
+        }
       });
-      groups.forEach(g=>{
-        const cols=[[]];
-        g.forEach(ev=>{
-          let placed=false;
-          for(let ci2=0;ci2<cols.length;ci2++){
-            if(!cols[ci2].some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
-              cols[ci2].push(ev); placed=true;
-              result.push({ev,col:ci2,totalCols:0});
-              break;
-            }
-          }
-          if(!placed){
-            cols.push([ev]);
-            result.push({ev,col:cols.length-1,totalCols:0});
-          }
-        });
-        const tc=cols.length;
-        result.filter(r=>g.includes(r.ev)).forEach(r=>r.totalCols=tc);
-      });
+      const tc=cols.length;
+      result.filter(r=>g.includes(r.ev)).forEach(r=>r.totalCols=tc);
     });
     return result;
   }
 
-  let h='<div class="cal-week"><div class="wk-hdr">'+
-    '<div style="background:var(--surface2);border-right:1px solid var(--border)"></div>'+
-    wd.map((d,i)=>'<div class="wk-dhdr'+(isToday(d)?' tod':'')+'"><div class="wk-dname">'+DN[i]+'</div><div class="wk-dnum">'+d.getDate()+'</div></div>').join('')+
-    '</div>';
-
+  // Strip de eventos de dia inteiro (blocoLongo)
   const wAllDay=filt.filter(ev=>ev.blocoLongo&&ev.dataInicio<=sun&&ev.dataFim>=mon);
-  if(wAllDay.length){
-    h+='<div style="display:grid;grid-template-columns:40px repeat(7,1fr);border-bottom:2px solid var(--border);background:var(--surface2)">';
-    h+='<div style="border-right:1px solid var(--border);min-height:24px;font-family:\'DM Mono\',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center">dia int.</div>';
-    wd.forEach(d=>{
-      const ds=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
-      const de2=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
-      const isSeg2=d.getDay()===1;
-      const strips=wAllDay.filter(ev=>{
-        if(ev.dataInicio>de2||ev.dataFim<ds)return false;
-        if(isSeg2){const p=(ev.segunda||'').trim().toLowerCase().replace(/ã/g,'a');if(p!=='sim')return false;}
-        return true;
-      });
-      h+='<div style="border-right:1px solid var(--border);padding:2px 3px;min-height:24px;display:flex;flex-direction:column;gap:1px">';
-      strips.forEach(ev=>{
-        const [ac,bg]=ci.has(ev.id)?['var(--conf)','var(--conf-bg)']:espColor(ev);
-        h+='<div onclick="showM('+ev.id+')" title="'+ev.titulo+' · '+ev.espaco+'"'
+
+  function allDayCell(d){
+    const ds=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
+    const de2=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
+    const isSeg2=d.getDay()===1;
+    const strips=wAllDay.filter(ev=>{
+      if(ev.dataInicio>de2||ev.dataFim<ds)return false;
+      if(isSeg2){const p=(ev.segunda||'').trim().toLowerCase().replace(/ã/g,'a');if(p!=='sim')return false;}
+      return true;
+    });
+    return '<div style="box-shadow:inset 1px 0 0 var(--border);padding:2px 3px;display:flex;flex-direction:column;gap:1px;min-width:0;overflow:hidden">'
+      +strips.map(ev=>{
+        const[ac,bg]=ci.has(ev.id)?['var(--conf)','var(--conf-bg)']:espColor(ev);
+        return '<div onclick="showM('+ev.id+')" title="'+ev.titulo+'"'
           +' style="font-size:9px;font-weight:600;padding:2px 5px;border-radius:3px;cursor:pointer;'
           +'background:'+bg+';color:'+ac+';border-left:3px '+(ev.recorrente?'dashed':'solid')+' '+ac+';'
           +'white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5">'
           +(ev.recorrente?'↻ ':'')+ev.titulo+'</div>';
-      });
-      h+='</div>';
-    });
-    h+='</div>';
+      }).join('')
+      +'</div>';
   }
 
-  h+='<div class="wk-body"><div class="wk-times">';
+  // Strip fora do wk-hdr mas alinhado via overflow:hidden no wrapper
+  const allDayStrip = wAllDay.length
+    ? '<div class="wk-allday">'
+      +'<div class="wk-allday-lbl">dia<br>int.</div>'
+      +'<div class="wk-allday-cols">'
+      +wd.map(d=>allDayCell(d)).join('')
+      +'</div></div>'
+    : '';
+
+  let h='<div class="cal-week"><div class="wk-hdr">'+
+    '<div style="background:var(--surface2);border-right:1px solid var(--border)"></div>'+
+    wd.map((d,i)=>'<div class="wk-dhdr'+(isToday(d)?' tod':'')+'"><div class="wk-dname">'+DN[i]+'</div><div class="wk-dnum">'+d.getDate()+'</div></div>').join('')+
+    '</div>'+allDayStrip+'<div class="wk-body"><div class="wk-times">';
 
   for(let hr=DS;hr<DF;hr++) h+='<div class="wk-ts">'+String(hr).padStart(2,'0')+'h</div>';
   h+='</div>';
