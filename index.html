@@ -61,7 +61,7 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .conf-space{font-family:'DM Mono',monospace;font-size:11px;color:var(--conf);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
 .conf-ev{font-size:12px;color:var(--text-muted);padding:2px 0}
 .conf-ev+.conf-ev{border-top:1px solid var(--conf-bd);padding-top:4px;margin-top:4px}
-.cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;contain:layout}
+.cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .dow-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:var(--surface2);border-bottom:1px solid var(--border)}
 .dow{padding:8px;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-left:1px solid var(--border);box-sizing:border-box}
 .dow:first-child{border-left:none}
@@ -395,38 +395,23 @@ function expandEvents(evs) {
     const dFim    = new Date(ev.dataFim.getFullYear(),    ev.dataFim.getMonth(),    ev.dataFim.getDate());
     const duracaoDias = Math.round((dFim - dInicio) / (1000*60*60*24));
 
-    // Evento NÃO recorrente com datas de ocorrência explícitas → gera uma ocorrência por data
+    // Evento NÃO recorrente com Datas de Ocorrência explícitas
     if (!ev.recorrente && ev.datasOcorrencia && ev.datasOcorrencia.trim()) {
-      // Parsear lista: '01, 02, 07, 08/04.' ou '01, 02, 07, 08, 09, 14.../04.  05.../05.'
-      // Formato: números separados por vírgula com mês indicado após último número do grupo (ex: '01, 02, 07/04.')
-      const raw = ev.datasOcorrencia.replace(/\n/g,' ');
-      // Dividir em grupos por mês: cada grupo termina com '/MM.' ou '/MM'
-      const grupos = raw.split(/\.\s*(?=[\d,\s]+\/\d{2})/);
-      // Extrair todas as datas absolutas
-      const datas = [];
-      // Formato: 'DD, DD, DD.../MM. DD, DD.../MM.' — extrair grupos por mês
-      const grupoRe = /([\d,\s\.e]+)\/?(\d{2})/g;
-      let gm;
-      while((gm = grupoRe.exec(raw)) !== null) {
-        const mes = parseInt(gm[2]);
-        const yr = ev.dataInicio.getFullYear();
-        const nums = gm[1].match(/\d+/g)||[];
-        nums.forEach(n => datas.push(new Date(yr, mes-1, parseInt(n))));
+      const raw2 = ev.datasOcorrencia.replace(/\n/g,' ');
+      const grupoRe2 = /([\d,\s\.e]+)\/([01]\d)/g;
+      let gm2; const datas2 = [];
+      while((gm2 = grupoRe2.exec(raw2)) !== null) {
+        const mes2 = parseInt(gm2[2]), yr2 = ev.dataInicio.getFullYear();
+        (gm2[1].match(/\d+/g)||[]).forEach(n => datas2.push(new Date(yr2, mes2-1, parseInt(n))));
       }
-      if (datas.length > 0) {
-        datas.forEach(data => {
-          if (data < dInicio || data > dFim) return; // fora do período
+      if (datas2.length > 0) {
+        datas2.forEach(data => {
+          if (data < dInicio || data > dFim) return;
           slots.forEach((sl, si) => {
-            const ocIni = new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hIni, sl.mIni);
-            const ocFim = new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hFim, sl.mFim);
-            expanded.push({
-              ...ev,
-              id: uid++,
-              parentId: ev.id,
-              turnoIdx: si,
-              turnoLabel: `${String(sl.hIni).padStart(2,'0')}:${String(sl.mIni).padStart(2,'0')}–${String(sl.hFim).padStart(2,'0')}:${String(sl.mFim).padStart(2,'0')}`,
-              dataInicio: ocIni,
-              dataFim: ocFim
+            expanded.push({ ...ev, id: uid++, parentId: ev.id, turnoIdx: si,
+              turnoLabel: String(sl.hIni).padStart(2,'0')+':'+String(sl.mIni).padStart(2,'0')+'\u2013'+String(sl.hFim).padStart(2,'0')+':'+String(sl.mFim).padStart(2,'0'),
+              dataInicio: new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hIni, sl.mIni),
+              dataFim:    new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hFim, sl.mFim)
             });
           });
         });
@@ -538,7 +523,7 @@ function parseCSV(t){
       status:r['Status']||'',responsavel:r['Responsável']||r['Responsavel']||'',
       observacoes:r['Observações']||r['Observacoes']||'',
       datasRegistro:r['Datas de Registro']||r['Datas de registro']||r['datasRegistro']||'',
-      datasOcorrencia:r['Datas de Ocorrência']||r['Datas de Ocorrencia']||r['datasOcorrencia']||''
+      datasOcorrencia:r['Datas de Ocorr\u00eancia']||r['Datas de Ocorrencia']||''
     };
   }).filter(e=>e.titulo&&e.dataInicio);
 }
@@ -723,40 +708,46 @@ function rOcupacao(){
   // Retorna array de {ev, col, totalCols} — col e totalCols definem left% e width%
   function calcLayout(evs) {
     if(!evs.length) return [];
-    // Ordena por início, depois por duração decrescente
-    const sorted = [...evs].sort((a,b)=>a.dataInicio-b.dataInicio||(b.dataFim-b.dataInicio)-(a.dataFim-a.dataInicio));
-    // Grupos de sobreposição (clique)
-    const groups = [];
-    sorted.forEach(ev=>{
-      let placed=false;
-      for(const g of groups){
-        // Sobrepõe com algum evento do grupo?
-        if(g.some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
-          g.push(ev); placed=true; break;
-        }
-      }
-      if(!placed) groups.push([ev]);
+    // Agrupa por espaço — colisão só ocorre entre eventos do MESMO espaço
+    const byEspaco = {};
+    evs.forEach(ev=>{
+      const key = (ev.espaco||'').split(',')[0].trim() || '__sem_espaco__';
+      if(!byEspaco[key]) byEspaco[key]=[];
+      byEspaco[key].push(ev);
     });
     const result=[];
-    groups.forEach(g=>{
-      // Dentro do grupo, atribuir colunas sem sobreposição
-      const cols=[[]]; // cols[i] = lista de eventos na coluna i
-      g.forEach(ev=>{
+    Object.values(byEspaco).forEach(group=>{
+      const sorted=[...group].sort((a,b)=>a.dataInicio-b.dataInicio||(b.dataFim-b.dataInicio)-(a.dataFim-a.dataInicio));
+      // Grupos de sobreposição dentro do mesmo espaço
+      const groups=[];
+      sorted.forEach(ev=>{
         let placed=false;
-        for(let ci2=0;ci2<cols.length;ci2++){
-          if(!cols[ci2].some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
-            cols[ci2].push(ev); placed=true;
-            result.push({ev,col:ci2,totalCols:0}); // totalCols preenchido abaixo
-            break;
+        for(const g of groups){
+          if(g.some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
+            g.push(ev); placed=true; break;
           }
         }
-        if(!placed){
-          cols.push([ev]);
-          result.push({ev,col:cols.length-1,totalCols:0});
-        }
+        if(!placed) groups.push([ev]);
       });
-      const tc=cols.length;
-      result.filter(r=>g.includes(r.ev)).forEach(r=>r.totalCols=tc);
+      groups.forEach(g=>{
+        const cols=[[]];
+        g.forEach(ev=>{
+          let placed=false;
+          for(let ci2=0;ci2<cols.length;ci2++){
+            if(!cols[ci2].some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
+              cols[ci2].push(ev); placed=true;
+              result.push({ev,col:ci2,totalCols:0});
+              break;
+            }
+          }
+          if(!placed){
+            cols.push([ev]);
+            result.push({ev,col:cols.length-1,totalCols:0});
+          }
+        });
+        const tc=cols.length;
+        result.filter(r=>g.includes(r.ev)).forEach(r=>r.totalCols=tc);
+      });
     });
     return result;
   }
@@ -766,29 +757,27 @@ function rOcupacao(){
     wd.map((d,i)=>'<div class="wk-dhdr'+(isToday(d)?' tod':'')+'"><div class="wk-dname">'+DN[i]+'</div><div class="wk-dnum">'+d.getDate()+'</div></div>').join('')+
     '</div>';
 
-  // ── Faixa de eventos de longa duração (blocoLongo) ──
   const wAllDay=filt.filter(ev=>ev.blocoLongo&&ev.dataInicio<=sun&&ev.dataFim>=mon);
   if(wAllDay.length){
     h+='<div style="display:grid;grid-template-columns:40px repeat(7,1fr);border-bottom:2px solid var(--border);background:var(--surface2)">';
-    h+='<div style="border-right:1px solid var(--border);min-height:24px;font-family:\'DM Mono\',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center;padding:2px">dia inteiro</div>';
+    h+='<div style="border-right:1px solid var(--border);min-height:24px;font-family:\'DM Mono\',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center">dia int.</div>';
     wd.forEach(d=>{
       const ds=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
       const de2=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
-      const isDaySeg2=d.getDay()===1;
+      const isSeg2=d.getDay()===1;
       const strips=wAllDay.filter(ev=>{
         if(ev.dataInicio>de2||ev.dataFim<ds)return false;
-        if(isDaySeg2){const p=(ev.segunda||'').trim().toLowerCase().replace(/\u00e3/g,'a');if(p!=='sim')return false;}
+        if(isSeg2){const p=(ev.segunda||'').trim().toLowerCase().replace(/ã/g,'a');if(p!=='sim')return false;}
         return true;
       });
       h+='<div style="border-right:1px solid var(--border);padding:2px 3px;min-height:24px;display:flex;flex-direction:column;gap:1px">';
       strips.forEach(ev=>{
         const [ac,bg]=ci.has(ev.id)?['var(--conf)','var(--conf-bg)']:espColor(ev);
-        const bStyle=ev.recorrente?'dashed':'solid';
-        h+='<div onclick="showM('+ev.id+')" title="'+ev.titulo+' \u00b7 '+ev.espaco+'"'
-          +'style="font-size:9px;font-weight:600;padding:2px 5px;border-radius:3px;cursor:pointer;'
-          +'background:'+bg+';color:'+ac+';border-left:3px '+bStyle+' '+ac+';'
+        h+='<div onclick="showM('+ev.id+')" title="'+ev.titulo+' · '+ev.espaco+'"'
+          +' style="font-size:9px;font-weight:600;padding:2px 5px;border-radius:3px;cursor:pointer;'
+          +'background:'+bg+';color:'+ac+';border-left:3px '+(ev.recorrente?'dashed':'solid')+' '+ac+';'
           +'white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5">'
-          +(ev.recorrente?'\u21bb ':'')+ev.titulo+'</div>';
+          +(ev.recorrente?'↻ ':'')+ev.titulo+'</div>';
       });
       h+='</div>';
     });
@@ -796,6 +785,7 @@ function rOcupacao(){
   }
 
   h+='<div class="wk-body"><div class="wk-times">';
+
   for(let hr=DS;hr<DF;hr++) h+='<div class="wk-ts">'+String(hr).padStart(2,'0')+'h</div>';
   h+='</div>';
 
@@ -807,8 +797,8 @@ function rOcupacao(){
       if(!ev.dataInicio||!ev.dataFim)return false;
       if(ev.dataInicio>dayEnd||ev.dataFim<dayStart)return false;
       if(isDaySeg){const p=(ev.segunda||'').trim().toLowerCase().replace(/ã/g,'a');if(p!=='sim')return false;}
-      return true;
-    }).filter(ev=>!ev.blocoLongo);
+      return !ev.blocoLongo;
+    });
 
     h+='<div class="wk-col">';
     for(let hr=DS;hr<DF;hr++) h+='<div class="wk-hr"></div>';
