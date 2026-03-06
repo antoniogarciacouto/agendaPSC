@@ -73,7 +73,7 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .cal-cell.today .day-num{background:var(--accent2);color:#0d0f14;border-radius:50%;font-weight:600}
 .cal-cell.other .day-num{color:var(--border)}
 .evs{display:flex;flex-direction:column;gap:2px}
-.cev{font-size:10px;padding:2px 5px;border-radius:3px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;transition:opacity .15s;line-height:1.5;border-left:2px solid transparent;min-width:0;max-width:100%;display:block}
+.cev{font-size:10px;padding:2px 5px;border-radius:3px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;transition:opacity .15s;line-height:1.5;border-left:2px solid transparent}
 .cev:hover{opacity:.8}
 /* cores por unidade */
 .us{background:var(--santa-bg);color:var(--santa);border-left-color:var(--santa)}
@@ -367,7 +367,7 @@ const ESPACO_MAP={"Galeria Santa Rita": {"unidade": "Santa Rita", "bloco": "Sant
 function parseHorarios(s) {
   if (!s || !s.trim()) return [];
   return s.split(';').map(t => {
-    const m = t.trim().match(/(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/);
+    const m = t.trim().match(/(\d{1,2}):(\d{2})\s*(?:[-–]|\s+[aà][os]?\s+)\s*(\d{1,2}):(\d{2})/);
     if (!m) return null;
     return {hIni:+m[1],mIni:+m[2],hFim:+m[3],mFim:+m[4]};
   }).filter(Boolean);
@@ -724,15 +724,51 @@ function rOcupacao(){
   let h='<div class="cal-week"><div class="wk-hdr">'+
     '<div style="background:var(--surface2);border-right:1px solid var(--border)"></div>'+
     wd.map((d,i)=>'<div class="wk-dhdr'+(isToday(d)?' tod':'')+'"><div class="wk-dname">'+DN[i]+'</div><div class="wk-dnum">'+d.getDate()+'</div></div>').join('')+
-    '</div><div class="wk-body"><div class="wk-times">';
+    '</div>';
 
+  // ── Faixa de eventos de longa duração (blocoLongo) ──
+  const wAllDay=filt.filter(ev=>ev.blocoLongo&&ev.dataInicio<=sun&&ev.dataFim>=mon);
+  if(wAllDay.length){
+    h+='<div style="display:grid;grid-template-columns:40px repeat(7,1fr);border-bottom:2px solid var(--border);background:var(--surface2)">';
+    h+='<div style="border-right:1px solid var(--border);min-height:24px;font-family:\'DM Mono\',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center;padding:2px">dia inteiro</div>';
+    wd.forEach(d=>{
+      const ds=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
+      const de2=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
+      const isDaySeg2=d.getDay()===1;
+      const strips=wAllDay.filter(ev=>{
+        if(ev.dataInicio>de2||ev.dataFim<ds)return false;
+        if(isDaySeg2){const p=(ev.segunda||'').trim().toLowerCase().replace(/\u00e3/g,'a');if(p!=='sim')return false;}
+        return true;
+      });
+      h+='<div style="border-right:1px solid var(--border);padding:2px 3px;min-height:24px;display:flex;flex-direction:column;gap:1px">';
+      strips.forEach(ev=>{
+        const [ac,bg]=ci.has(ev.id)?['var(--conf)','var(--conf-bg)']:espColor(ev);
+        const bStyle=ev.recorrente?'dashed':'solid';
+        h+='<div onclick="showM('+ev.id+')" title="'+ev.titulo+' \u00b7 '+ev.espaco+'"'
+          +'style="font-size:9px;font-weight:600;padding:2px 5px;border-radius:3px;cursor:pointer;'
+          +'background:'+bg+';color:'+ac+';border-left:3px '+bStyle+' '+ac+';'
+          +'white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5">'
+          +(ev.recorrente?'\u21bb ':'')+ev.titulo+'</div>';
+      });
+      h+='</div>';
+    });
+    h+='</div>';
+  }
+
+  h+='<div class="wk-body"><div class="wk-times">';
   for(let hr=DS;hr<DF;hr++) h+='<div class="wk-ts">'+String(hr).padStart(2,'0')+'h</div>';
   h+='</div>';
 
   wd.forEach(d=>{
     const dayStart=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
     const dayEnd=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
-    const de=filt.filter(ev=>ev.dataInicio&&ev.dataFim&&ev.dataInicio<=dayEnd&&ev.dataFim>=dayStart);
+    const isDaySeg=d.getDay()===1;
+    const de=filt.filter(ev=>{
+      if(!ev.dataInicio||!ev.dataFim)return false;
+      if(ev.dataInicio>dayEnd||ev.dataFim<dayStart)return false;
+      if(isDaySeg){const p=(ev.segunda||'').trim().toLowerCase().replace(/ã/g,'a');if(p!=='sim')return false;}
+      return true;
+    }).filter(ev=>!ev.blocoLongo);
 
     h+='<div class="wk-col">';
     for(let hr=DS;hr<DF;hr++) h+='<div class="wk-hr"></div>';
