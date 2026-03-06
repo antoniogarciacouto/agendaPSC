@@ -1295,8 +1295,11 @@ function rGantt(){
   // Linha de labels de hora (cabeçalho de horas)
   function hoursHeaderCell(stepMin){
     stepMin=stepMin||60;
+    // Modo semana: label só a cada 3h para evitar sobreposição
+    const labelEvery = ganttDia ? stepMin : 180;
     let cell='<td style="position:relative;height:22px;padding:0;border:1px solid var(--border);background:var(--surface2)">';
     for(let m=0;m<=totalMin;m+=stepMin){
+      if(m % labelEvery !== 0) continue;
       const hr2=DS+Math.floor(m/60);const min2=m%60;
       const pct2=(m/totalMin*100).toFixed(2);
       const lbl=min2===0?String(hr2).padStart(2,'0')+'h':String(hr2).padStart(2,'0')+':30';
