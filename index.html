@@ -238,6 +238,9 @@ body.pmode .pmode-exit{display:block}
     <button class="nav-btn" onclick="navP()">‹</button>
     <div class="plbl" id="plbl"></div>
     <button class="nav-btn" onclick="navN()">›</button>
+    <div id="ganttToggle" style="display:none;margin-left:8px;display:none">
+      <button id="ganttBtnDia" onclick="setGanttModo('dia')" style="padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;border-radius:4px 0 0 4px;border:1px solid var(--border);background:var(--accent2);color:#000;cursor:pointer">Dia</button><button id="ganttBtnSem" onclick="setGanttModo('semana')" style="padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;border-radius:0 4px 4px 0;border:1px solid var(--border);border-left:none;background:var(--surface2);color:var(--text-muted);cursor:pointer">Semana</button>
+    </div>
   </div>
 </div>
 <main>
@@ -628,9 +631,17 @@ function cids(){
 function scrollConf(){document.getElementById('confPanel').scrollIntoView({behavior:'smooth'});}
 
 // ─── NAVEGAÇÃO ────────────────────────────────────────────────────────────────
-function sv(v){view=v;document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.className='tab-btn'+(['dia','ocupacao','mes','ano','lista','semana','gantt'][i]===v?' active':'');});render();}
-function navP(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);else if(view==='semana'||view==='ocupacao')cur=new Date(cur.getTime()-7*86400000);else if(view==='gantt'){ganttDia=ganttDia||new Date(cur);ganttDia=new Date(ganttDia.getTime()-86400000);cur=new Date(ganttDia);}else if(view==='dia')cur=new Date(cur.getTime()-86400000);else if(view==='ano')cur=new Date(cur.getFullYear()-1,0,1);render();}
-function navN(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);else if(view==='semana'||view==='ocupacao')cur=new Date(cur.getTime()+7*86400000);else if(view==='gantt'){ganttDia=ganttDia||new Date(cur);ganttDia=new Date(ganttDia.getTime()+86400000);cur=new Date(ganttDia);}else if(view==='dia')cur=new Date(cur.getTime()+86400000);else if(view==='ano')cur=new Date(cur.getFullYear()+1,0,1);render();}
+function sv(v){
+  view=v;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.className='tab-btn'+(['dia','ocupacao','mes','ano','lista','semana','gantt'][i]===v?' active':'');});
+  const gt=document.getElementById('ganttToggle');
+  if(gt) gt.style.display=v==='gantt'?'flex':'none';
+  // Resetar para modo dia ao entrar na Grade
+  if(v==='gantt'&&ganttModo==='dia') ganttDia=new Date(cur);
+  render();
+}
+function navP(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);else if(view==='semana'||view==='ocupacao')cur=new Date(cur.getTime()-7*86400000);else if(view==='gantt'){if(ganttModo==='semana'){cur=new Date(cur.getTime()-7*86400000);}else{ganttDia=ganttDia||new Date(cur);ganttDia=new Date(ganttDia.getTime()-86400000);cur=new Date(ganttDia);}}else if(view==='dia')cur=new Date(cur.getTime()-86400000);else if(view==='ano')cur=new Date(cur.getFullYear()-1,0,1);render();}
+function navN(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);else if(view==='semana'||view==='ocupacao')cur=new Date(cur.getTime()+7*86400000);else if(view==='gantt'){if(ganttModo==='semana'){cur=new Date(cur.getTime()+7*86400000);}else{ganttDia=ganttDia||new Date(cur);ganttDia=new Date(ganttDia.getTime()+86400000);cur=new Date(ganttDia);}}else if(view==='dia')cur=new Date(cur.getTime()+86400000);else if(view==='ano')cur=new Date(cur.getFullYear()+1,0,1);render();}
 function goToday(){cur=new Date();render();}
 
 // ─── RENDER ───────────────────────────────────────────────────────────────────
@@ -1219,11 +1230,26 @@ document.addEventListener('fullscreenchange',()=>{
 // Atualizar label ao navegar em modo apresentação
 
 // ─── GANTT (espaços × semana / dia) ─────────────────────────────────────────
-let ganttDia = new Date(cur); // Grade sempre diária
+let ganttDia = new Date(cur); // Grade: Date = modo dia, null = modo semana
+let ganttModo = 'dia'; // 'dia' ou 'semana'
+function setGanttModo(m){
+  ganttModo=m;
+  if(m==='dia'){ganttDia=new Date(cur);}else{ganttDia=null;}
+  // Atualizar estilos dos botões
+  const bD=document.getElementById('ganttBtnDia');
+  const bS=document.getElementById('ganttBtnSem');
+  if(bD&&bS){
+    bD.style.background=m==='dia'?'var(--accent2)':'var(--surface2)';
+    bD.style.color=m==='dia'?'#000':'var(--text-muted)';
+    bS.style.background=m==='semana'?'var(--accent2)':'var(--surface2)';
+    bS.style.color=m==='semana'?'#000':'var(--text-muted)';
+  }
+  render();
+}
 
 function rGantt(){
-  // Grade sempre diária — sincronizar com cur
-  if(!ganttDia) ganttDia=new Date(cur);
+  if(ganttModo==='dia'&&!ganttDia) ganttDia=new Date(cur);
+  if(ganttModo==='semana') ganttDia=null;
   const dow=(cur.getDay()+6)%7;
   const mon=new Date(cur.getTime()-dow*86400000);mon.setHours(0,0,0,0);
   const sun=new Date(mon.getTime()+6*86400000);sun.setHours(23,59,59);
