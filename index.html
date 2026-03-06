@@ -1350,10 +1350,19 @@ function rGantt(){
       let cell=`<td style="position:relative;height:40px;padding:0;border:1px solid var(--border);background:var(--surface);vertical-align:top">${ticksHtml()}`;
 
       dayEvs.forEach(ev=>{
-        const s=ev.dataInicio<dayStart?dayStart:ev.dataInicio;
-        const e=ev.dataFim>dayEnd?dayEnd:ev.dataFim;
-        const sMin=Math.max((s.getHours()-DS)*60+s.getMinutes(),0);
-        const eMin=Math.min((e.getHours()-DS)*60+e.getMinutes(),totalMin);
+        // Para blocoLongo: usar o horário real do evento, não as datas de início/fim do período
+        let sMin, eMin;
+        if(ev.blocoLongo){
+          const turnos=parseHorarios(ev.horarios);
+          const sl=turnos.length?turnos[0]:null;
+          sMin = sl ? Math.max((sl.hIni*60+sl.mIni)-(DS*60), 0) : 0;
+          eMin = sl ? Math.min((sl.hFim*60+sl.mFim)-(DS*60), totalMin) : totalMin;
+        } else {
+          const s=ev.dataInicio<dayStart?dayStart:ev.dataInicio;
+          const e=ev.dataFim>dayEnd?dayEnd:ev.dataFim;
+          sMin=Math.max((s.getHours()-DS)*60+s.getMinutes(),0);
+          eMin=Math.min((e.getHours()-DS)*60+e.getMinutes(),totalMin);
+        }
         if(eMin<=sMin)return;
         const left=(sMin/totalMin*100).toFixed(3);
         const width=Math.max(0.3,((eMin-sMin)/totalMin*100)).toFixed(3);
