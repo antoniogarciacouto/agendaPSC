@@ -395,6 +395,45 @@ function expandEvents(evs) {
     const dFim    = new Date(ev.dataFim.getFullYear(),    ev.dataFim.getMonth(),    ev.dataFim.getDate());
     const duracaoDias = Math.round((dFim - dInicio) / (1000*60*60*24));
 
+    // Evento NÃO recorrente com datas de ocorrência explícitas → gera uma ocorrência por data
+    if (!ev.recorrente && ev.datasOcorrencia && ev.datasOcorrencia.trim()) {
+      // Parsear lista: '01, 02, 07, 08/04.' ou '01, 02, 07, 08, 09, 14.../04.  05.../05.'
+      // Formato: números separados por vírgula com mês indicado após último número do grupo (ex: '01, 02, 07/04.')
+      const raw = ev.datasOcorrencia.replace(/\n/g,' ');
+      // Dividir em grupos por mês: cada grupo termina com '/MM.' ou '/MM'
+      const grupos = raw.split(/\.\s*(?=[\d,\s]+\/\d{2})/);
+      // Extrair todas as datas absolutas
+      const datas = [];
+      // Formato: 'DD, DD, DD.../MM. DD, DD.../MM.' — extrair grupos por mês
+      const grupoRe = /([\d,\s\.e]+)\/?(\d{2})/g;
+      let gm;
+      while((gm = grupoRe.exec(raw)) !== null) {
+        const mes = parseInt(gm[2]);
+        const yr = ev.dataInicio.getFullYear();
+        const nums = gm[1].match(/\d+/g)||[];
+        nums.forEach(n => datas.push(new Date(yr, mes-1, parseInt(n))));
+      }
+      if (datas.length > 0) {
+        datas.forEach(data => {
+          if (data < dInicio || data > dFim) return; // fora do período
+          slots.forEach((sl, si) => {
+            const ocIni = new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hIni, sl.mIni);
+            const ocFim = new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hFim, sl.mFim);
+            expanded.push({
+              ...ev,
+              id: uid++,
+              parentId: ev.id,
+              turnoIdx: si,
+              turnoLabel: `${String(sl.hIni).padStart(2,'0')}:${String(sl.mIni).padStart(2,'0')}–${String(sl.hFim).padStart(2,'0')}:${String(sl.mFim).padStart(2,'0')}`,
+              dataInicio: ocIni,
+              dataFim: ocFim
+            });
+          });
+        });
+        return;
+      }
+    }
+
     // Evento NÃO recorrente de longa duração → bloco único
     if (!ev.recorrente && duracaoDias > 1) {
       const sl = slots[0];
@@ -498,7 +537,8 @@ function parseCSV(t){
       segunda:r['Segunda']||'',
       status:r['Status']||'',responsavel:r['Responsável']||r['Responsavel']||'',
       observacoes:r['Observações']||r['Observacoes']||'',
-      datasRegistro:r['Datas de Registro']||r['Datas de registro']||r['datasRegistro']||''
+      datasRegistro:r['Datas de Registro']||r['Datas de registro']||r['datasRegistro']||'',
+      datasOcorrencia:r['Datas de Ocorrência']||r['Datas de Ocorrencia']||r['datasOcorrencia']||''
     };
   }).filter(e=>e.titulo&&e.dataInicio);
 }
