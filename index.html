@@ -62,17 +62,18 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .conf-ev{font-size:12px;color:var(--text-muted);padding:2px 0}
 .conf-ev+.conf-ev{border-top:1px solid var(--conf-bd);padding-top:4px;margin-top:4px}
 .cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.dow-row{display:grid;grid-template-columns:repeat(7,1fr);background:var(--surface2);border-bottom:1px solid var(--border)}
-.dow{padding:8px;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr)}
-.cal-cell{border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-height:100px;padding:6px}
-.cal-cell:nth-child(7n){border-right:none}
+.dow-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:var(--surface2);border-bottom:1px solid var(--border)}
+.dow{padding:8px;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-left:1px solid var(--border);box-sizing:border-box}
+.dow:first-child{border-left:none}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal-cell{border-left:1px solid var(--border);border-bottom:1px solid var(--border);height:140px;padding:6px;box-sizing:border-box;overflow:hidden;min-width:0}
+.cal-cell:nth-child(7n+1){border-left:none}
 .cal-cell.other{background:rgba(0,0,0,.2)}
 .day-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
 .cal-cell.today .day-num{background:var(--accent2);color:#0d0f14;border-radius:50%;font-weight:600}
 .cal-cell.other .day-num{color:var(--border)}
-.evs{display:flex;flex-direction:column;gap:2px}
-.cev{font-size:10px;padding:2px 5px;border-radius:3px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;transition:opacity .15s;line-height:1.5;border-left:2px solid transparent}
+.evs{display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.cev{font-size:10px;padding:2px 5px;border-radius:3px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;transition:opacity .15s;line-height:1.5;border-left:2px solid transparent;display:block;max-width:100%}
 .cev:hover{opacity:.8}
 /* cores por unidade */
 .us{background:var(--santa-bg);color:var(--santa);border-left-color:var(--santa)}
@@ -88,7 +89,6 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .wk-allday{display:flex;border-bottom:2px solid var(--border);background:var(--surface2);overflow:hidden}
 .wk-allday-lbl{width:40px;min-width:40px;border-right:1px solid var(--border);font-family:'DM Mono',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center;text-align:center;padding:2px}
 .wk-allday-cols{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));overflow:hidden}
-.wk-body{display:grid;grid-template-columns:40px repeat(7,minmax(0,1fr));max-height:calc(100vh - 160px);overflow-y:auto}
 .wk-dhdr{padding:10px 8px;text-align:center;border-left:1px solid var(--border)}
 .wk-dname{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
 .wk-dnum{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text-muted);margin-top:2px;line-height:1}
@@ -238,7 +238,7 @@ body.pmode .pmode-exit{display:block}
     <button class="nav-btn" onclick="navP()">‹</button>
     <div class="plbl" id="plbl"></div>
     <button class="nav-btn" onclick="navN()">›</button>
-    <div id="ganttToggle" style="display:none;margin-left:8px;display:none">
+    <div id="ganttToggle" style="display:none;margin-left:8px">
       <button id="ganttBtnDia" onclick="setGanttModo('dia')" style="padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;border-radius:4px 0 0 4px;border:1px solid var(--border);background:var(--accent2);color:#000;cursor:pointer">Dia</button><button id="ganttBtnSem" onclick="setGanttModo('semana')" style="padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;border-radius:0 4px 4px 0;border:1px solid var(--border);border-left:none;background:var(--surface2);color:var(--text-muted);cursor:pointer">Semana</button>
     </div>
   </div>
@@ -401,7 +401,6 @@ function expandEvents(evs) {
     const dFim    = new Date(ev.dataFim.getFullYear(),    ev.dataFim.getMonth(),    ev.dataFim.getDate());
     const duracaoDias = Math.round((dFim - dInicio) / (1000*60*60*24));
 
-    // Evento NÃO recorrente: datasOcorrencia → ocorrências por data; senão → blocoLongo
     if (!ev.recorrente && duracaoDias > 0) {
       let handled = false;
       if (ev.datasOcorrencia && ev.datasOcorrencia.trim()) {
@@ -636,7 +635,6 @@ function sv(v){
   document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.className='tab-btn'+(['dia','ocupacao','mes','ano','lista','semana','gantt'][i]===v?' active':'');});
   const gt=document.getElementById('ganttToggle');
   if(gt) gt.style.display=v==='gantt'?'flex':'none';
-  // Resetar para modo dia ao entrar na Grade
   if(v==='gantt'&&ganttModo==='dia') ganttDia=new Date(cur);
   render();
 }
@@ -1230,20 +1228,13 @@ document.addEventListener('fullscreenchange',()=>{
 // Atualizar label ao navegar em modo apresentação
 
 // ─── GANTT (espaços × semana / dia) ─────────────────────────────────────────
-let ganttDia = new Date(cur); // Grade: Date = modo dia, null = modo semana
-let ganttModo = 'dia'; // 'dia' ou 'semana'
+let ganttDia = new Date(cur);
+let ganttModo = 'dia';
 function setGanttModo(m){
   ganttModo=m;
   if(m==='dia'){ganttDia=new Date(cur);}else{ganttDia=null;}
-  // Atualizar estilos dos botões
-  const bD=document.getElementById('ganttBtnDia');
-  const bS=document.getElementById('ganttBtnSem');
-  if(bD&&bS){
-    bD.style.background=m==='dia'?'var(--accent2)':'var(--surface2)';
-    bD.style.color=m==='dia'?'#000':'var(--text-muted)';
-    bS.style.background=m==='semana'?'var(--accent2)':'var(--surface2)';
-    bS.style.color=m==='semana'?'#000':'var(--text-muted)';
-  }
+  const bD=document.getElementById('ganttBtnDia'),bS=document.getElementById('ganttBtnSem');
+  if(bD&&bS){bD.style.background=m==='dia'?'var(--accent2)':'var(--surface2)';bD.style.color=m==='dia'?'#000':'var(--text-muted)';bS.style.background=m==='semana'?'var(--accent2)':'var(--surface2)';bS.style.color=m==='semana'?'#000':'var(--text-muted)';}
   render();
 }
 
@@ -1295,11 +1286,10 @@ function rGantt(){
   // Linha de labels de hora (cabeçalho de horas)
   function hoursHeaderCell(stepMin){
     stepMin=stepMin||60;
-    // Modo semana: label só a cada 3h para evitar sobreposição
-    const labelEvery = ganttDia ? stepMin : 180;
+    const labelEvery=ganttDia?stepMin:180;
     let cell='<td style="position:relative;height:22px;padding:0;border:1px solid var(--border);background:var(--surface2)">';
     for(let m=0;m<=totalMin;m+=stepMin){
-      if(m % labelEvery !== 0) continue;
+      if(m%labelEvery!==0)continue;
       const hr2=DS+Math.floor(m/60);const min2=m%60;
       const pct2=(m/totalMin*100).toFixed(2);
       const lbl=min2===0?String(hr2).padStart(2,'0')+'h':String(hr2).padStart(2,'0')+':30';
@@ -1330,9 +1320,12 @@ function rGantt(){
   dias.forEach((d,i)=>{
     const tod=isToday(d);
     const dn=DN[(d.getDay()+6)%7];
-    h+=`<th style="background:var(--surface2);border:1px solid var(--border);padding:6px 4px;text-align:center;user-select:none">
+    h+=`<th
+      style="background:var(--surface2);border:1px solid var(--border);padding:6px 4px;text-align:center;cursor:pointer;transition:background .15s;user-select:none"
+      onmouseover="this.style.background='var(--surface3,var(--surface))'"
+      onmouseout="this.style.background='var(--surface2)'">
       <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;color:${tod?'var(--accent2)':'var(--text-dim)'}">${dn}</div>
-      <div style="font-family:'DM Serif Display',serif;font-size:18px;color:${tod?'var(--accent2)':'var(--text-muted)'}">${d.getDate()}</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:${ganttDia?'18':'14'}px;color:${tod?'var(--accent2)':'var(--text-muted)'}">${d.getDate()}</div>
       </th>`;
   });
 
@@ -1353,13 +1346,12 @@ function rGantt(){
       let cell=`<td style="position:relative;height:40px;padding:0;border:1px solid var(--border);background:var(--surface);vertical-align:top">${ticksHtml()}`;
 
       dayEvs.forEach(ev=>{
-        // Para blocoLongo: usar o horário real do evento, não as datas de início/fim do período
-        let sMin, eMin;
+        let sMin,eMin;
         if(ev.blocoLongo){
           const turnos=parseHorarios(ev.horarios);
           const sl=turnos.length?turnos[0]:null;
-          sMin = sl ? Math.max((sl.hIni*60+sl.mIni)-(DS*60), 0) : 0;
-          eMin = sl ? Math.min((sl.hFim*60+sl.mFim)-(DS*60), totalMin) : totalMin;
+          sMin=sl?Math.max((sl.hIni*60+sl.mIni)-(DS*60),0):0;
+          eMin=sl?Math.min((sl.hFim*60+sl.mFim)-(DS*60),totalMin):totalMin;
         } else {
           const s=ev.dataInicio<dayStart?dayStart:ev.dataInicio;
           const e=ev.dataFim>dayEnd?dayEnd:ev.dataFim;
