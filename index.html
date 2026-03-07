@@ -697,9 +697,18 @@ function cids(){
 function scrollConf(){document.getElementById('confPanel').scrollIntoView({behavior:'smooth'});}
 
 // ─── NAVEGAÇÃO ────────────────────────────────────────────────────────────────
-function sv(v){view=v;document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.className='tab-btn'+(['dia','ocupacao','mes','ano','lista','semana','gantt'][i]===v?' active':'');});render();}
-function navP(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);else if(view==='semana'||view==='ocupacao'||view==='gantt')cur=new Date(cur.getTime()-7*86400000);else if(view==='dia')cur=new Date(cur.getTime()-86400000);else if(view==='ano')cur=new Date(cur.getFullYear()-1,0,1);render();}
-function navN(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);else if(view==='semana'||view==='ocupacao'||view==='gantt')cur=new Date(cur.getTime()+7*86400000);else if(view==='dia')cur=new Date(cur.getTime()+86400000);else if(view==='ano')cur=new Date(cur.getFullYear()+1,0,1);render();}
+function sv(v){
+  // Ao sair da grade em modo dia, preservar o dia em cur
+  if(view==='gantt'&&ganttDia) cur=new Date(ganttDia);
+  // Ao entrar na grade vindo de uma view de dia específico, abrir no modo dia
+  if(v==='gantt'&&(view==='dia'||view==='semana'||view==='ocupacao'))
+    ganttDia=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate());
+  view=v;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.className='tab-btn'+(['dia','ocupacao','mes','ano','lista','semana','gantt'][i]===v?' active':'');});
+  render();
+}
+function navP(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);else if(view==='gantt'&&ganttDia){ganttDia=new Date(ganttDia.getTime()-86400000);cur=new Date(ganttDia);}else if(view==='semana'||view==='ocupacao'||view==='gantt')cur=new Date(cur.getTime()-7*86400000);else if(view==='dia')cur=new Date(cur.getTime()-86400000);else if(view==='ano')cur=new Date(cur.getFullYear()-1,0,1);render();}
+function navN(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);else if(view==='gantt'&&ganttDia){ganttDia=new Date(ganttDia.getTime()+86400000);cur=new Date(ganttDia);}else if(view==='semana'||view==='ocupacao'||view==='gantt')cur=new Date(cur.getTime()+7*86400000);else if(view==='dia')cur=new Date(cur.getTime()+86400000);else if(view==='ano')cur=new Date(cur.getFullYear()+1,0,1);render();}
 function goToday(){cur=new Date();render();}
 
 // ─── RENDER ───────────────────────────────────────────────────────────────────
@@ -972,7 +981,10 @@ function rWeek(){
   const DS=9,DF=22,H=49; // deve coincidir com .wk-hr height(48px)+border(1px)
 
   // Eventos da semana
-  const wevs=filt.filter(e=>e.dataInicio&&e.dataFim&&e.dataInicio<=sun&&e.dataFim>=mon);
+  // Quando em modo dia, filtrar em torno de ganttDia; senão usar a semana de cur
+  const wStart = ganttDia ? new Date(ganttDia.getFullYear(),ganttDia.getMonth(),ganttDia.getDate(),0,0,0) : mon;
+  const wEnd   = ganttDia ? new Date(ganttDia.getFullYear(),ganttDia.getMonth(),ganttDia.getDate(),23,59,59) : sun;
+  const wevs=filt.filter(e=>e.dataInicio&&e.dataFim&&e.dataInicio<=wEnd&&e.dataFim>=wStart);
   const espacos=[...new Set(wevs.flatMap(e=>(e.espaco||'').split(',').map(s=>s.trim()).filter(Boolean)))].sort();
 
   if(!espacos.length){
@@ -1218,7 +1230,7 @@ function rYear(){
   h+='</div>';
   document.getElementById('main').innerHTML=h;
 }
-function drillDown(yr,mo,day){cur=new Date(yr,mo,day);sv('dia');}
+function drillDown(yr,mo,day){cur=new Date(yr,mo,day);ganttDia=new Date(yr,mo,day);sv('dia');}
 
 // ─── LISTA ────────────────────────────────────────────────────────────────────
 function rList(){
@@ -1342,7 +1354,10 @@ function rGantt(){
   const DS=8,DF=22;
   const totalMin=(DF-DS)*60;
 
-  const wevs=filt.filter(e=>e.dataInicio&&e.dataFim&&e.dataInicio<=sun&&e.dataFim>=mon);
+  // Quando em modo dia, filtrar em torno de ganttDia; senão usar a semana de cur
+  const wStart = ganttDia ? new Date(ganttDia.getFullYear(),ganttDia.getMonth(),ganttDia.getDate(),0,0,0) : mon;
+  const wEnd   = ganttDia ? new Date(ganttDia.getFullYear(),ganttDia.getMonth(),ganttDia.getDate(),23,59,59) : sun;
+  const wevs=filt.filter(e=>e.dataInicio&&e.dataFim&&e.dataInicio<=wEnd&&e.dataFim>=wStart);
   const espacos=[...new Set(wevs.flatMap(e=>(e.espaco||'').split(',').map(s=>s.trim()).filter(Boolean)))].sort();
 
   // label período
@@ -1436,10 +1451,19 @@ function rGantt(){
       let cell=`<td style="position:relative;height:40px;padding:0;border:1px solid var(--border);background:var(--surface);vertical-align:top">${ticksHtml()}`;
 
       dayEvs.forEach(ev=>{
-        const s=ev.dataInicio<dayStart?dayStart:ev.dataInicio;
-        const e=ev.dataFim>dayEnd?dayEnd:ev.dataFim;
-        const sMin=Math.max((s.getHours()-DS)*60+s.getMinutes(),0);
-        const eMin=Math.min((e.getHours()-DS)*60+e.getMinutes(),totalMin);
+        // Para blocoLongo, o horário real está em ev.horarios, não em dataInicio/dataFim
+        let sMin, eMin;
+        if(ev.blocoLongo){
+          const turnos=parseHorarios(ev.horarios);
+          const sl=turnos.length?turnos[0]:{hIni:DS,mIni:0,hFim:DF,mFim:0};
+          sMin=Math.max((sl.hIni-DS)*60+sl.mIni, 0);
+          eMin=Math.min((sl.hFim-DS)*60+sl.mFim, totalMin);
+        } else {
+          const s=ev.dataInicio<dayStart?dayStart:ev.dataInicio;
+          const e=ev.dataFim>dayEnd?dayEnd:ev.dataFim;
+          sMin=Math.max((s.getHours()-DS)*60+s.getMinutes(),0);
+          eMin=Math.min((e.getHours()-DS)*60+e.getMinutes(),totalMin);
+        }
         if(eMin<=sMin)return;
         const left=(sMin/totalMin*100).toFixed(3);
         const width=Math.max(0.3,((eMin-sMin)/totalMin*100)).toFixed(3);
