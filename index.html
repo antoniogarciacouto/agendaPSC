@@ -9,7 +9,7 @@
 <style>
 :root {
   /* ── Fundo light #EEF4FF (referência: Sesc 80 Anos template) ── */
-  --bg:#eef4ff;--surface:#ffffff;--surface2:#dde8f8;--border:#c2d3ee;
+  --bg:#eef4ff;--surface:#ffffff;--surface2:#dde8f8;--border:#c2d3ee;--border-hr:rgba(180,200,230,.28);
   --text:#0e2841;--text-muted:#3a5578;--text-dim:#7a9bbf;
   /* Acento principal: azul Sesc #144582 | dourado/laranja como hierarquia secundária */
   --accent:#144582;--accent2:#e07b20;--accent3:#1a7a4a;--accent4:#c0392b;
@@ -43,7 +43,7 @@
 }
 /* ── Tema escuro ── */
 html.dark {
-  --bg:#0d0f14;--surface:#12151e;--surface2:#1a1e29;--border:#252a38;
+  --bg:#0d0f14;--surface:#12151e;--surface2:#1a1e29;--border:#252a38;--border-hr:rgba(37,42,56,.4);
   --text:#e8eaf0;--text-muted:#8b92a8;--text-dim:#555c72;
   --accent:#4e9fff;--accent2:#c8a96e;--accent3:#6ed9b0;--accent4:#e06060;
   --santa:#6ed9b0;--santa-bg:rgba(110,217,176,.12);--santa-bd:rgba(110,217,176,.3);
@@ -162,8 +162,8 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .wk-body{display:grid;grid-template-columns:40px repeat(7,1fr);max-height:calc(100vh - 160px);overflow-y:auto}
 body.pmode .wk-body{max-height:100%;height:100%}
 .wk-times{border-right:1px solid var(--border);min-width:40px;width:40px;flex-shrink:0}
-.wk-ts{height:48px;border-bottom:1px solid rgba(180,200,230,.6);padding:4px 6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-align:right;overflow:hidden;white-space:nowrap}
-.wk-hr{height:48px;border-bottom:1px solid rgba(180,200,230,.5)}
+.wk-ts{height:48px;border-bottom:1px solid var(--border-hr);padding:4px 6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-align:right;overflow:hidden;white-space:nowrap}
+.wk-hr{height:48px;border-bottom:1px solid var(--border-hr)}
 .wk-ev{position:absolute;left:2px;right:2px;border-radius:4px;padding:2px 5px;font-size:10px;font-weight:500;cursor:pointer;overflow:hidden;z-index:2;transition:opacity .15s;border-left:2px solid transparent}
 .wk-ev:hover{opacity:.8;z-index:3}
 .wk-ev.recur{border-left-style:dashed}
@@ -775,10 +775,85 @@ function rOcupacao(){
   // Retorna array de {ev, col, totalCols} — col e totalCols definem left% e width%
   function calcLayout(evs) {
     if(!evs.length) return [];
-    // Cada evento ocupa 100% da largura — sem divisão de colunas
-    // (eventos em espaços diferentes ficam sobrepostos; conflitos reais
-    //  são visíveis pelo contexto e pela view Grade/Espaços)
-    return evs.map(ev=>({ev, col:0, totalCols:1}));
+
+    function getInterval(ev) {
+      if(ev.blocoLongo){
+        const turnos=parseHorarios(ev.horarios);
+        const sl=turnos.length?turnos[0]:{hIni:DS,mIni:0,hFim:DF,mFim:0};
+        return { start: sl.hIni*60+sl.mIni, end: sl.hFim*60+sl.mFim };
+      }
+      return { start: ev.dataInicio.getHours()*60+ev.dataInicio.getMinutes(),
+               end:   ev.dataFim.getHours()*60+ev.dataFim.getMinutes() };
+    }
+
+    const n = evs.length;
+    const ivs = evs.map(getInterval);
+
+    // Sobreposição direta entre dois índices
+    function overlaps(i,j){ return ivs[i].start < ivs[j].end && ivs[i].end > ivs[j].start; }
+
+    // Ordena por início, depois por duração decrescente
+    const order = evs.map((_,i)=>i).sort((a,b)=>
+      ivs[a].start !== ivs[b].start
+        ? ivs[a].start - ivs[b].start
+        : (ivs[b].end - ivs[b].start) - (ivs[a].end - ivs[a].start)
+    );
+
+    // Atribui menor coluna disponível a cada evento
+    const cols = new Array(n).fill(0);
+    for(let oi=0; oi<n; oi++){
+      const i = order[oi];
+      const used = new Set();
+      for(let oj=0; oj<oi; oj++){
+        const j = order[oj];
+        if(overlaps(i,j)) used.add(cols[j]);
+      }
+      let c=0; while(used.has(c)) c++;
+      cols[i] = c;
+    }
+
+    // totalCols por componente conexo:
+    // 1. Encontra grupos transitivos (BFS)
+    // 2. Para cada grupo, calcula o pico de sobreposição simultânea
+    //    varrendo os pontos de mudança (sweep line)
+    // 3. Todos os membros do grupo recebem esse pico como totalCols
+    const totalCols = new Array(n).fill(1);
+    const assigned = new Array(n).fill(false);
+
+    for(let start=0; start<n; start++){
+      if(assigned[start]) continue;
+
+      // BFS: componente conexo transitivo
+      const group = [];
+      const q = [start];
+      const inGroup = new Set([start]);
+      while(q.length){
+        const cur = q.shift();
+        group.push(cur);
+        for(let j=0; j<n; j++){
+          if(!inGroup.has(j) && overlaps(cur,j)){
+            inGroup.add(j);
+            q.push(j);
+          }
+        }
+      }
+
+      // Sweep line: pico de eventos simultâneos em qualquer instante
+      // (usa pontos de início/fim de cada evento do grupo)
+      const events = [];
+      group.forEach(i => {
+        events.push({ t: ivs[i].start, type: 1 });
+        events.push({ t: ivs[i].end,   type: -1 });
+      });
+      events.sort((a,b) => a.t !== b.t ? a.t - b.t : a.type - b.type);
+      let cur2 = 0, peak = 0;
+      events.forEach(e => { cur2 += e.type; if(cur2 > peak) peak = cur2; });
+
+      // Todos do grupo recebem o pico como totalCols
+      group.forEach(i => { totalCols[i] = peak; assigned[i] = true; });
+    }
+
+    return evs.map((ev,i)=>({ ev, col:cols[i], totalCols:totalCols[i] }));
   }
 
   let h='<div class="cal-week"><div class="wk-hdr">'+
@@ -1037,9 +1112,9 @@ function rDay(){
   const de=evDay(cur),ci=cids();const DS=9,DF=22,H=60;
   if(!de.length){document.getElementById('main').innerHTML='<div class="empty-state"><div class="empty-icon">📭</div><h3>Nenhuma atividade neste dia</h3></div>';return;}
   let h='<div class="cal-day"><div style="display:grid;grid-template-columns:52px 1fr;max-height:calc(100vh - 160px);overflow-y:auto"><div style="border-right:1px solid var(--border)">';
-  for(let h2=DS;h2<23;h2++)h+='<div style="height:'+H+'px;border-bottom:1px solid var(--border);padding:4px 6px;font-family:DM Mono,monospace;font-size:10px;color:var(--text-dim);text-align:right">'+String(h2).padStart(2,'0')+'h</div>';
+  for(let h2=DS;h2<23;h2++)h+='<div style="height:'+H+'px;border-bottom:1px solid var(--border-hr);padding:4px 6px;font-family:DM Mono,monospace;font-size:10px;color:var(--text-dim);text-align:right">'+String(h2).padStart(2,'0')+'h</div>';
   h+='</div><div style="position:relative;border-left:1px solid var(--border)">';
-  for(let h2=DS;h2<23;h2++)h+='<div style="height:'+H+'px;border-bottom:1px solid rgba(180,200,230,.5)"></div>';
+  for(let h2=DS;h2<23;h2++)h+='<div style="height:'+H+'px;border-bottom:1px solid var(--border-hr)"></div>';
   // Calcular layout sem sobreposição (mesmo algoritmo do view Semana)
   const dayStart=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate(),0,0,0);
   const dayEnd=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate(),23,59,59);
