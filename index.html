@@ -3,11 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Agenda PSC 2026</title>
+<title>Agenda PSC 2026 · Light</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* ── Fundo light #EEF4FF (referência: Sesc 80 Anos template) ── */
+  --bg:#eef4ff;--surface:#ffffff;--surface2:#dde8f8;--border:#c2d3ee;
+  --text:#0e2841;--text-muted:#3a5578;--text-dim:#7a9bbf;
+  /* Acento principal: azul Sesc #144582 | dourado/laranja como hierarquia secundária */
+  --accent:#144582;--accent2:#e07b20;--accent3:#1a7a4a;--accent4:#c0392b;
+  /* Unidades: tons saturados que contrastam bem sobre fundo claro */
+  --santa:#1a7a4a;--santa-bg:rgba(26,122,74,.10);--santa-bd:rgba(26,122,74,.30);
+  --cabore:#c87000;--cabore-bg:rgba(200,112,0,.10);--cabore-bd:rgba(200,112,0,.30);
+  --base:#144582;--base-bg:rgba(20,69,130,.10);--base-bd:rgba(20,69,130,.30);
+  --conf:#c0392b;--conf-bg:rgba(192,57,43,.10);--conf-bd:rgba(192,57,43,.35);
+  /* Espaços Santa Rita — tons quentes (amarelos/laranjas/rosa) adaptados para fundo claro */
+  --esp-galeria-sr:#b08000;--esp-galeria-sr-bg:rgba(176,128,0,.12);
+  --esp-cinema:#c85000;--esp-cinema-bg:rgba(200,80,0,.12);
+  --esp-sala-musica:#6a8e00;--esp-sala-musica-bg:rgba(106,142,0,.12);
+  --esp-palco-cafe:#b02050;--esp-palco-cafe-bg:rgba(176,32,80,.12);
+  --esp-espaco-memoria:#9a7000;--esp-espaco-memoria-bg:rgba(154,112,0,.12);
+  --esp-sala-artes:#7a9200;--esp-sala-artes-bg:rgba(122,146,0,.12);
+  --esp-sala-oficinas:#a05800;--esp-sala-oficinas-bg:rgba(160,88,0,.12);
+  --esp-espaco-leitura:#8a7200;--esp-espaco-leitura-bg:rgba(138,114,0,.12);
+  /* Espaços Caborê — tons frios (ciano/azul/violeta/verde) adaptados para fundo claro */
+  --esp-atelier1:#007a9a;--esp-atelier1-bg:rgba(0,122,154,.12);
+  --esp-atelier2:#1040b0;--esp-atelier2-bg:rgba(16,64,176,.12);
+  --esp-galeria-cb:#6a009a;--esp-galeria-cb-bg:rgba(106,0,154,.12);
+  --esp-maker:#007a50;--esp-maker-bg:rgba(0,122,80,.12);
+  --esp-musica1:#006898;--esp-musica1-bg:rgba(0,104,152,.12);
+  --esp-musica2:#280090;--esp-musica2-bg:rgba(40,0,144,.12);
+  --esp-sala-danca:#007868;--esp-sala-danca-bg:rgba(0,120,104,.12);
+  --esp-sala-ensaios:#2060a8;--esp-sala-ensaios-bg:rgba(32,96,168,.12);
+  --esp-area-externa:#006830;--esp-area-externa-bg:rgba(0,104,48,.12);
+  --esp-palquinho:#4a5870;--esp-palquinho-bg:rgba(74,88,112,.12);
+  --esp-acao-externa:#c0005a;--esp-acao-externa-bg:rgba(192,0,90,.13);
+  --recur:#5a3eaa;--recur-bg:rgba(90,62,170,.08);--recur-bd:rgba(90,62,170,.25);
+}
+/* ── Tema escuro ── */
+html.dark {
   --bg:#0d0f14;--surface:#12151e;--surface2:#1a1e29;--border:#252a38;
   --text:#e8eaf0;--text-muted:#8b92a8;--text-dim:#555c72;
   --accent:#4e9fff;--accent2:#c8a96e;--accent3:#6ed9b0;--accent4:#e06060;
@@ -15,12 +50,44 @@
   --cabore:#c8a96e;--cabore-bg:rgba(200,169,110,.12);--cabore-bd:rgba(200,169,110,.3);
   --base:#4e9fff;--base-bg:rgba(78,159,255,.12);--base-bd:rgba(78,159,255,.3);
   --conf:#e06060;--conf-bg:rgba(224,96,96,.12);--conf-bd:rgba(224,96,96,.4);
-  --esp-galeria-sr:#ffc800;--esp-galeria-sr-bg:rgba(255,200,0,.20);--esp-cinema:#ff7800;--esp-cinema-bg:rgba(255,120,0,.20);--esp-sala-musica:#b4e600;--esp-sala-musica-bg:rgba(180,230,0,.20);--esp-palco-cafe:#ff5078;--esp-palco-cafe-bg:rgba(255,80,120,.20);--esp-espaco-memoria:#f0b400;--esp-espaco-memoria-bg:rgba(240,180,0,.20);--esp-sala-artes:#c8f03c;--esp-sala-artes-bg:rgba(200,240,60,.20);--esp-sala-oficinas:#ff9600;--esp-sala-oficinas-bg:rgba(255,150,0,.20);--esp-espaco-leitura:#ffdc50;--esp-espaco-leitura-bg:rgba(255,220,80,.20);--esp-atelier1:#00e6ff;--esp-atelier1-bg:rgba(0,230,255,.20);--esp-atelier2:#0064ff;--esp-atelier2-bg:rgba(0,100,255,.20);--esp-galeria-cb:#b400ff;--esp-galeria-cb-bg:rgba(180,0,255,.20);--esp-maker:#00ff8c;--esp-maker-bg:rgba(0,255,140,.20);--esp-musica1:#00c8ff;--esp-musica1-bg:rgba(0,200,255,.20);--esp-musica2:#3c00c8;--esp-musica2-bg:rgba(60,0,200,.20);--esp-sala-danca:#00ffc8;--esp-sala-danca-bg:rgba(0,255,200,.20);--esp-sala-ensaios:#64b4ff;--esp-sala-ensaios-bg:rgba(100,180,255,.20);--esp-area-externa:#00c850;--esp-area-externa-bg:rgba(0,200,80,.20);--esp-palquinho:#8c96aa;--esp-palquinho-bg:rgba(140,150,170,.20);--esp-acao-externa:#ff2d78;--esp-acao-externa-bg:rgba(255,45,120,.22);
+  --esp-galeria-sr:#ffc800;--esp-galeria-sr-bg:rgba(255,200,0,.20);
+  --esp-cinema:#ff7800;--esp-cinema-bg:rgba(255,120,0,.20);
+  --esp-sala-musica:#b4e600;--esp-sala-musica-bg:rgba(180,230,0,.20);
+  --esp-palco-cafe:#ff5078;--esp-palco-cafe-bg:rgba(255,80,120,.20);
+  --esp-espaco-memoria:#f0b400;--esp-espaco-memoria-bg:rgba(240,180,0,.20);
+  --esp-sala-artes:#c8f03c;--esp-sala-artes-bg:rgba(200,240,60,.20);
+  --esp-sala-oficinas:#ff9600;--esp-sala-oficinas-bg:rgba(255,150,0,.20);
+  --esp-espaco-leitura:#ffdc50;--esp-espaco-leitura-bg:rgba(255,220,80,.20);
+  --esp-atelier1:#00e6ff;--esp-atelier1-bg:rgba(0,230,255,.20);
+  --esp-atelier2:#0064ff;--esp-atelier2-bg:rgba(0,100,255,.20);
+  --esp-galeria-cb:#b400ff;--esp-galeria-cb-bg:rgba(180,0,255,.20);
+  --esp-maker:#00ff8c;--esp-maker-bg:rgba(0,255,140,.20);
+  --esp-musica1:#00c8ff;--esp-musica1-bg:rgba(0,200,255,.20);
+  --esp-musica2:#3c00c8;--esp-musica2-bg:rgba(60,0,200,.20);
+  --esp-sala-danca:#00ffc8;--esp-sala-danca-bg:rgba(0,255,200,.20);
+  --esp-sala-ensaios:#64b4ff;--esp-sala-ensaios-bg:rgba(100,180,255,.20);
+  --esp-area-externa:#00c850;--esp-area-externa-bg:rgba(0,200,80,.20);
+  --esp-palquinho:#8c96aa;--esp-palquinho-bg:rgba(140,150,170,.20);
+  --esp-acao-externa:#ff2d78;--esp-acao-externa-bg:rgba(255,45,120,.22);
   --recur:#a78bfa;--recur-bg:rgba(167,139,250,.1);--recur-bd:rgba(167,139,250,.3);
 }
+/* Ajustes dark que não são cobertos por variáveis */
+html.dark header{border-bottom:1px solid var(--border);box-shadow:none}
+html.dark nav{box-shadow:none}
+html.dark .toolbar{box-shadow:none}
+html.dark .cal-month,html.dark .cal-week{box-shadow:none}
+html.dark .list-item:hover{box-shadow:none;border-color:var(--text-dim)}
+html.dark .tab-btn:hover{color:var(--text)}
+html.dark .tab-btn.active{color:var(--accent2);border-bottom-color:var(--accent2);font-weight:500}
+html.dark .modal{box-shadow:0 8px 32px rgba(0,0,0,.5)}
+html.dark .modal-overlay{background:rgba(0,0,0,.65)}
+html.dark .toast{box-shadow:0 4px 16px rgba(0,0,0,.4)}
+html.dark .cal-cell.other{background:rgba(0,0,0,.2)}
+html.dark .cal-cell.today .day-num{color:#0d0f14}
+html.dark .mc.tod{color:#0d0f14}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;font-size:14px}
-header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+header{background:var(--surface);border-bottom:3px solid var(--accent);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(20,69,130,.08)}
 .logo-text{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);line-height:1.7;letter-spacing:.03em}
 .logo-text strong{font-size:15px;color:var(--text);font-family:'DM Serif Display',serif;display:block;margin-bottom:2px;letter-spacing:0}
 .hright{display:flex;align-items:center;gap:16px}
@@ -28,15 +95,17 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .leg-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-weight:500}
 .leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
 .conf-badge{display:none;align-items:center;gap:6px;background:var(--conf-bg);border:1px solid var(--conf-bd);color:var(--conf);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Mono',monospace;transition:background .15s}
-.conf-badge:hover{background:rgba(224,96,96,.2)}
+.conf-badge:hover{background:rgba(192,57,43,.15)}
 .conf-badge.vis{display:flex}
 .btn-up{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);color:var(--accent2);border-radius:6px;padding:7px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:border-color .15s;white-space:nowrap}
 .btn-up:hover{border-color:var(--accent2)}
-nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;overflow-x:auto}
+.btn-theme{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:6px 12px;font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.btn-theme:hover{border-color:var(--accent);color:var(--accent)}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;overflow-x:auto;box-shadow:0 1px 4px rgba(20,69,130,.05)}
 .tab-btn{background:none;border:none;color:var(--text-muted);padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--accent2);border-bottom-color:var(--accent2);font-weight:500}
-.toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tab-btn:hover{color:var(--accent)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(20,69,130,.04)}
 .flbl{font-size:11px;color:var(--text-dim);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
 .fsep{width:1px;height:24px;background:var(--border);margin:0 4px}
 select.fsel{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 28px 5px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text-muted);cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%238b92a8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;transition:border-color .15s}
@@ -61,19 +130,19 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .conf-space{font-family:'DM Mono',monospace;font-size:11px;color:var(--conf);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
 .conf-ev{font-size:12px;color:var(--text-muted);padding:2px 0}
 .conf-ev+.conf-ev{border-top:1px solid var(--conf-bd);padding-top:4px;margin-top:4px}
-.cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(20,69,130,.06)}
 .dow-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:var(--surface2);border-bottom:1px solid var(--border)}
 .dow{padding:8px;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-left:1px solid var(--border);box-sizing:border-box}
 .dow:first-child{border-left:none}
 .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
-.cal-cell{border-left:1px solid var(--border);border-bottom:1px solid var(--border);height:140px;padding:6px;box-sizing:border-box;overflow:hidden;min-width:0}
+.cal-cell{border-left:1px solid var(--border);border-bottom:1px solid var(--border);min-height:100px;padding:6px;min-width:0;overflow:hidden;box-sizing:border-box}
 .cal-cell:nth-child(7n+1){border-left:none}
-.cal-cell.other{background:rgba(0,0,0,.2)}
+.cal-cell.other{background:rgba(180,200,230,.18)}
 .day-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
-.cal-cell.today .day-num{background:var(--accent2);color:#0d0f14;border-radius:50%;font-weight:600}
+.cal-cell.today .day-num{background:var(--accent2);color:#ffffff;border-radius:50%;font-weight:600}
 .cal-cell.other .day-num{color:var(--border)}
-.evs{display:flex;flex-direction:column;gap:2px;overflow:hidden}
-.cev{font-size:10px;padding:2px 5px;border-radius:3px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;transition:opacity .15s;line-height:1.5;border-left:2px solid transparent;display:block;max-width:100%}
+.evs{display:flex;flex-direction:column;gap:2px}
+.cev{font-size:10px;padding:2px 5px;border-radius:3px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;transition:opacity .15s;line-height:1.5;border-left:2px solid transparent}
 .cev:hover{opacity:.8}
 /* cores por unidade */
 .us{background:var(--santa-bg);color:var(--santa);border-left-color:var(--santa)}
@@ -84,11 +153,8 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .cev.recur{border-left-style:dashed}
 .cal-more{font-size:10px;color:var(--text-dim);cursor:pointer;padding:1px 4px;font-family:'DM Mono',monospace}
 .cal-more:hover{color:var(--text-muted)}
-.cal-week{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.wk-hdr{display:grid;grid-template-columns:40px repeat(7,minmax(0,1fr));background:var(--surface2);border-bottom:1px solid var(--border)}
-.wk-allday{display:flex;border-bottom:2px solid var(--border);background:var(--surface2);overflow:hidden}
-.wk-allday-lbl{width:40px;min-width:40px;border-right:1px solid var(--border);font-family:'DM Mono',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center;text-align:center;padding:2px}
-.wk-allday-cols{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));overflow:hidden}
+.cal-week{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(20,69,130,.06)}
+.wk-hdr{display:grid;grid-template-columns:40px repeat(7,1fr);background:var(--surface2);border-bottom:1px solid var(--border)}
 .wk-dhdr{padding:10px 8px;text-align:center;border-left:1px solid var(--border)}
 .wk-dname{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
 .wk-dnum{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text-muted);margin-top:2px;line-height:1}
@@ -96,17 +162,17 @@ main{padding:24px 28px;max-width:1400px;margin:0 auto}
 .wk-body{display:grid;grid-template-columns:40px repeat(7,1fr);max-height:calc(100vh - 160px);overflow-y:auto}
 body.pmode .wk-body{max-height:100%;height:100%}
 .wk-times{border-right:1px solid var(--border);min-width:40px;width:40px;flex-shrink:0}
-.wk-ts{height:48px;border-bottom:1px solid rgba(37,42,56,.5);padding:4px 6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-align:right;overflow:hidden;white-space:nowrap}
-.wk-col{border-left:1px solid var(--border);position:relative}
-.wk-hr{height:48px;border-bottom:1px solid rgba(37,42,56,.4)}
+.wk-ts{height:48px;border-bottom:1px solid rgba(180,200,230,.6);padding:4px 6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);text-align:right;overflow:hidden;white-space:nowrap}
+.wk-hr{height:48px;border-bottom:1px solid rgba(180,200,230,.5)}
 .wk-ev{position:absolute;left:2px;right:2px;border-radius:4px;padding:2px 5px;font-size:10px;font-weight:500;cursor:pointer;overflow:hidden;z-index:2;transition:opacity .15s;border-left:2px solid transparent}
 .wk-ev:hover{opacity:.8;z-index:3}
 .wk-ev.recur{border-left-style:dashed}
+.wk-col{border-left:1px solid var(--border);position:relative}
 .cal-day{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .list-view{display:flex;flex-direction:column;gap:2px}
 .list-dhdr{font-family:'DM Serif Display',serif;font-size:15px;color:var(--text-muted);padding:16px 0 8px;border-bottom:1px solid var(--border);margin-bottom:4px}
-.list-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 16px;display:grid;grid-template-columns:130px 1fr auto;align-items:center;gap:12px;cursor:pointer;transition:border-color .15s}
-.list-item:hover{border-color:var(--text-dim)}
+.list-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 16px;display:grid;grid-template-columns:130px 1fr auto;align-items:center;gap:12px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.list-item:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(20,69,130,.10)}
 .list-item.lc{border-left:3px solid var(--conf)}
 .list-item.lr{border-left-style:dashed}
 .ltime{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim)}
@@ -122,7 +188,7 @@ body.pmode .wk-body{max-height:100%;height:100%}
 .bst-confirmada{background:rgba(110,217,176,.1);color:var(--accent3)}
 .bst-realizada{background:var(--surface2);color:var(--text-dim)}
 .bst-cancelada{background:var(--conf-bg);color:var(--conf)}
-.bst-provisoria{background:rgba(200,169,110,.1);color:var(--accent2)}
+.bst-provisoria{background:rgba(200,112,0,.10);color:var(--accent2)}
 .yr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:16px}
 body.pmode .yr-grid{padding:8px;gap:6px;height:100%;box-sizing:border-box;overflow:hidden;align-content:stretch;grid-template-rows:repeat(3,1fr)}
 body.pmode .yr-mo{border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
@@ -141,14 +207,14 @@ body.pmode .mini-cal .mini-dow-row,.pmode .mini-cal .mini-grid{zoom:.9}
 .mc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:3px;font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);cursor:pointer;position:relative;transition:background .1s}
 .mc.other{opacity:.25}
 .mc:not(.other):hover{background:var(--surface2)}
-.mc.tod{background:var(--accent2);color:#0d0f14;font-weight:700}
+.mc.tod{background:var(--accent2);color:#ffffff;font-weight:700}
 .mc-dots{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);display:flex;gap:2px;align-items:center}
 .mc-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
 .yr-evs{padding:0 8px 8px;display:flex;flex-direction:column;gap:2px;max-height:80px;overflow:hidden}
 .yr-ev{font-size:10px;padding:2px 5px;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(14,40,65,.45);z-index:200;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex;animation:fadeUp .2s ease}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:24px;position:relative}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:24px;position:relative;box-shadow:0 8px 32px rgba(20,69,130,.18)}
 .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-dim);font-size:22px;cursor:pointer;padding:4px 8px;transition:color .15s}
 .modal-close:hover{color:var(--text)}
 .modal-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text);margin-bottom:4px;padding-right:32px}
@@ -185,7 +251,7 @@ body.pmode .pmode-exit{display:block}
 .gantt-ev{position:absolute;top:3px;bottom:3px;border-radius:4px;padding:0 5px;font-size:10px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;display:flex;align-items:center;gap:4px;transition:opacity .15s}
 .gantt-ev:hover{opacity:.8}
 .gantt-tick{position:absolute;top:0;bottom:0;width:1px;background:var(--border);opacity:.4;pointer-events:none}
-.toast{position:fixed;bottom:20px;right:20px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:8px;font-size:12px;font-family:'DM Mono',monospace;z-index:300;transform:translateY(60px);transition:transform .3s;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:8px;font-size:12px;font-family:'DM Mono',monospace;z-index:300;transform:translateY(60px);transition:transform .3s;box-shadow:0 4px 16px rgba(20,69,130,.15)}
 .toast.show{transform:translateY(0)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:900px){.yr-grid{grid-template-columns:repeat(2,1fr)}.legend{display:none}}
@@ -204,6 +270,7 @@ body.pmode .pmode-exit{display:block}
     <div class="conf-badge" id="confBadge" onclick="scrollConf()">⚠ <span id="confCount">0</span> conflito(s)</div>
     <button class="btn-fs" onclick="toggleFS()" id="fsBtn" title="Tela cheia">⛶ Tela cheia</button>
     <span id="ghStatus" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);display:none;align-items:center;gap:5px"></span>
+    <button class="btn-theme" id="themeBtn" onclick="toggleTheme()" title="Alternar tema claro/escuro">☀ Light</button>
     <button class="btn-up" onclick="document.getElementById('csv-in').click()" title="Usar CSV local como alternativa">↑ CSV Manual</button>
     <input type="file" id="csv-in" accept=".csv" onchange="loadCSV(event)" style="display:none">
   </div>
@@ -238,9 +305,6 @@ body.pmode .pmode-exit{display:block}
     <button class="nav-btn" onclick="navP()">‹</button>
     <div class="plbl" id="plbl"></div>
     <button class="nav-btn" onclick="navN()">›</button>
-    <div id="ganttToggle" style="display:none;margin-left:8px">
-      <button id="ganttBtnDia" onclick="setGanttModo('dia')" style="padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;border-radius:4px 0 0 4px;border:1px solid var(--border);background:var(--accent2);color:#000;cursor:pointer">Dia</button><button id="ganttBtnSem" onclick="setGanttModo('semana')" style="padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;border-radius:0 4px 4px 0;border:1px solid var(--border);border-left:none;background:var(--surface2);color:var(--text-muted);cursor:pointer">Semana</button>
-    </div>
   </div>
 </div>
 <main>
@@ -401,6 +465,8 @@ function expandEvents(evs) {
     const dFim    = new Date(ev.dataFim.getFullYear(),    ev.dataFim.getMonth(),    ev.dataFim.getDate());
     const duracaoDias = Math.round((dFim - dInicio) / (1000*60*60*24));
 
+    // Evento NÃO recorrente: Datas de Ocorrência explícitas → ocorrências por data
+    // Evento NÃO recorrente sem datas explícitas e longa duração → bloco único
     if (!ev.recorrente && duracaoDias > 0) {
       let handled = false;
       if (ev.datasOcorrencia && ev.datasOcorrencia.trim()) {
@@ -416,7 +482,7 @@ function expandEvents(evs) {
             if (data < dInicio || data > dFim) return;
             slots.forEach((sl, si) => {
               expanded.push({ ...ev, id: uid++, parentId: ev.id, turnoIdx: si,
-                turnoLabel: String(sl.hIni).padStart(2,'0')+':'+String(sl.mIni).padStart(2,'0')+'–'+String(sl.hFim).padStart(2,'0')+':'+String(sl.mFim).padStart(2,'0'),
+                turnoLabel: String(sl.hIni).padStart(2,'0')+':'+String(sl.mIni).padStart(2,'0')+'\u2013'+String(sl.hFim).padStart(2,'0')+':'+String(sl.mFim).padStart(2,'0'),
                 dataInicio: new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hIni, sl.mIni),
                 dataFim:    new Date(data.getFullYear(), data.getMonth(), data.getDate(), sl.hFim, sl.mFim)
               });
@@ -427,7 +493,8 @@ function expandEvents(evs) {
       }
       if (!handled && duracaoDias > 1) {
         const sl = slots[0];
-        expanded.push({ ...ev, id: uid++, parentId: ev.id, turnoIdx: 0,
+        expanded.push({
+          ...ev, id: uid++, parentId: ev.id, turnoIdx: 0,
           turnoLabel: ev.horarios || '',
           dataInicio: new Date(dInicio.getFullYear(), dInicio.getMonth(), dInicio.getDate(), sl.hIni, sl.mIni),
           dataFim:    new Date(dFim.getFullYear(),    dFim.getMonth(),    dFim.getDate(),    sl.hFim, sl.mFim),
@@ -481,7 +548,7 @@ function hasRegistro(ev){
     return s===dd+'/'+mm || s===dd+'/'+mm+'/'+d.getFullYear();
   });
 }
-const RDOT='<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#e06060;flex-shrink:0;margin-left:4px;vertical-align:middle;position:relative;top:-1px"></span>';
+const RDOT='<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--conf);flex-shrink:0;margin-left:4px;vertical-align:middle;position:relative;top:-1px"></span>';
 
 // ─── CSV ──────────────────────────────────────────────────────────────────────
 function csvLine(l){const r=[];let c='',q=false;for(let i=0;i<l.length;i++){const ch=l[i];if(ch==='"'){if(q&&l[i+1]==='"'){c+='"';i++;}else q=!q;}else if(ch===','&&!q){r.push(c);c='';}else c+=ch;}r.push(c);return r;}
@@ -630,16 +697,9 @@ function cids(){
 function scrollConf(){document.getElementById('confPanel').scrollIntoView({behavior:'smooth'});}
 
 // ─── NAVEGAÇÃO ────────────────────────────────────────────────────────────────
-function sv(v){
-  view=v;
-  document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.className='tab-btn'+(['dia','ocupacao','mes','ano','lista','semana','gantt'][i]===v?' active':'');});
-  const gt=document.getElementById('ganttToggle');
-  if(gt) gt.style.display=v==='gantt'?'flex':'none';
-  if(v==='gantt'&&ganttModo==='dia') ganttDia=new Date(cur);
-  render();
-}
-function navP(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);else if(view==='semana'||view==='ocupacao')cur=new Date(cur.getTime()-7*86400000);else if(view==='gantt'){if(ganttModo==='semana'){cur=new Date(cur.getTime()-7*86400000);}else{ganttDia=ganttDia||new Date(cur);ganttDia=new Date(ganttDia.getTime()-86400000);cur=new Date(ganttDia);}}else if(view==='dia')cur=new Date(cur.getTime()-86400000);else if(view==='ano')cur=new Date(cur.getFullYear()-1,0,1);render();}
-function navN(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);else if(view==='semana'||view==='ocupacao')cur=new Date(cur.getTime()+7*86400000);else if(view==='gantt'){if(ganttModo==='semana'){cur=new Date(cur.getTime()+7*86400000);}else{ganttDia=ganttDia||new Date(cur);ganttDia=new Date(ganttDia.getTime()+86400000);cur=new Date(ganttDia);}}else if(view==='dia')cur=new Date(cur.getTime()+86400000);else if(view==='ano')cur=new Date(cur.getFullYear()+1,0,1);render();}
+function sv(v){view=v;document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.className='tab-btn'+(['dia','ocupacao','mes','ano','lista','semana','gantt'][i]===v?' active':'');});render();}
+function navP(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);else if(view==='semana'||view==='ocupacao'||view==='gantt')cur=new Date(cur.getTime()-7*86400000);else if(view==='dia')cur=new Date(cur.getTime()-86400000);else if(view==='ano')cur=new Date(cur.getFullYear()-1,0,1);render();}
+function navN(){if(view==='mes'||view==='lista')cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);else if(view==='semana'||view==='ocupacao'||view==='gantt')cur=new Date(cur.getTime()+7*86400000);else if(view==='dia')cur=new Date(cur.getTime()+86400000);else if(view==='ano')cur=new Date(cur.getFullYear()+1,0,1);render();}
 function goToday(){cur=new Date();render();}
 
 // ─── RENDER ───────────────────────────────────────────────────────────────────
@@ -715,78 +775,45 @@ function rOcupacao(){
   // Retorna array de {ev, col, totalCols} — col e totalCols definem left% e width%
   function calcLayout(evs) {
     if(!evs.length) return [];
-    // Ordena por início, depois por duração decrescente
-    const sorted = [...evs].sort((a,b)=>a.dataInicio-b.dataInicio||(b.dataFim-b.dataInicio)-(a.dataFim-a.dataInicio));
-    // Grupos de sobreposição (clique)
-    const groups = [];
-    sorted.forEach(ev=>{
-      let placed=false;
-      for(const g of groups){
-        // Sobrepõe com algum evento do grupo?
-        if(g.some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
-          g.push(ev); placed=true; break;
-        }
-      }
-      if(!placed) groups.push([ev]);
-    });
-    const result=[];
-    groups.forEach(g=>{
-      // Dentro do grupo, atribuir colunas sem sobreposição
-      const cols=[[]]; // cols[i] = lista de eventos na coluna i
-      g.forEach(ev=>{
-        let placed=false;
-        for(let ci2=0;ci2<cols.length;ci2++){
-          if(!cols[ci2].some(e=>e.dataInicio<ev.dataFim&&ev.dataInicio<e.dataFim)){
-            cols[ci2].push(ev); placed=true;
-            result.push({ev,col:ci2,totalCols:0}); // totalCols preenchido abaixo
-            break;
-          }
-        }
-        if(!placed){
-          cols.push([ev]);
-          result.push({ev,col:cols.length-1,totalCols:0});
-        }
-      });
-      const tc=cols.length;
-      result.filter(r=>g.includes(r.ev)).forEach(r=>r.totalCols=tc);
-    });
-    return result;
+    // Cada evento ocupa 100% da largura — sem divisão de colunas
+    // (eventos em espaços diferentes ficam sobrepostos; conflitos reais
+    //  são visíveis pelo contexto e pela view Grade/Espaços)
+    return evs.map(ev=>({ev, col:0, totalCols:1}));
   }
-
-  const wAllDay=filt.filter(ev=>ev.blocoLongo&&ev.dataInicio<=sun&&ev.dataFim>=mon);
-
-  function allDayCell(d){
-    const ds=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
-    const de2=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
-    const isSeg2=d.getDay()===1;
-    const strips=wAllDay.filter(ev=>{
-      if(ev.dataInicio>de2||ev.dataFim<ds)return false;
-      if(isSeg2){const p=(ev.segunda||'').trim().toLowerCase().replace(/ã/g,'a');if(p!=='sim')return false;}
-      return true;
-    });
-    return '<div style="box-shadow:inset 1px 0 0 var(--border);padding:2px 3px;display:flex;flex-direction:column;gap:1px;min-width:0;overflow:hidden">'
-      +strips.map(ev=>{
-        const[ac,bg]=ci.has(ev.id)?['var(--conf)','var(--conf-bg)']:espColor(ev);
-        return '<div onclick="showM('+ev.id+')" title="'+ev.titulo+'"'
-          +' style="font-size:9px;font-weight:600;padding:2px 5px;border-radius:3px;cursor:pointer;'
-          +'background:'+bg+';color:'+ac+';border-left:3px '+(ev.recorrente?'dashed':'solid')+' '+ac+';'
-          +'white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5">'
-          +(ev.recorrente?'↻ ':'')+ev.titulo+'</div>';
-      }).join('')
-      +'</div>';
-  }
-
-  const allDayStrip = wAllDay.length
-    ? '<div class="wk-allday">'
-      +'<div class="wk-allday-lbl">dia<br>int.</div>'
-      +'<div class="wk-allday-cols">'+wd.map(d=>allDayCell(d)).join('')+'</div>'
-      +'</div>'
-    : '';
 
   let h='<div class="cal-week"><div class="wk-hdr">'+
     '<div style="background:var(--surface2);border-right:1px solid var(--border)"></div>'+
     wd.map((d,i)=>'<div class="wk-dhdr'+(isToday(d)?' tod':'')+'"><div class="wk-dname">'+DN[i]+'</div><div class="wk-dnum">'+d.getDate()+'</div></div>').join('')+
-    '</div>'+allDayStrip+'<div class="wk-body"><div class="wk-times">';
+    '</div>';
+
+  const wAllDay=filt.filter(ev=>ev.blocoLongo&&ev.dataInicio<=sun&&ev.dataFim>=mon);
+  if(wAllDay.length){
+    h+='<div style="display:grid;grid-template-columns:40px repeat(7,1fr);border-bottom:2px solid var(--border);background:var(--surface2)">';
+    h+='<div style="border-right:1px solid var(--border);min-height:24px;font-family:\'DM Mono\',monospace;font-size:8px;color:var(--text-dim);display:flex;align-items:center;justify-content:center">dia int.</div>';
+    wd.forEach(d=>{
+      const ds=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
+      const de2=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
+      const isSeg2=d.getDay()===1;
+      const strips=wAllDay.filter(ev=>{
+        if(ev.dataInicio>de2||ev.dataFim<ds)return false;
+        if(isSeg2){const p=(ev.segunda||'').trim().toLowerCase().replace(/ã/g,'a');if(p!=='sim')return false;}
+        return true;
+      });
+      h+='<div style="border-right:1px solid var(--border);padding:2px 3px;min-height:24px;display:flex;flex-direction:column;gap:1px">';
+      strips.forEach(ev=>{
+        const [ac,bg]=ci.has(ev.id)?['var(--conf)','var(--conf-bg)']:espColor(ev);
+        h+='<div onclick="showM('+ev.id+')" title="'+ev.titulo+' · '+ev.espaco+'"'
+          +' style="font-size:9px;font-weight:600;padding:2px 5px;border-radius:3px;cursor:pointer;'
+          +'background:'+bg+';color:'+ac+';border-left:3px '+(ev.recorrente?'dashed':'solid')+' '+ac+';'
+          +'white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5">'
+          +(ev.recorrente?'↻ ':'')+ev.titulo+'</div>';
+      });
+      h+='</div>';
+    });
+    h+='</div>';
+  }
+
+  h+='<div class="wk-body"><div class="wk-times">';
 
   for(let hr=DS;hr<DF;hr++) h+='<div class="wk-ts">'+String(hr).padStart(2,'0')+'h</div>';
   h+='</div>';
@@ -931,7 +958,7 @@ function rWeek(){
     espacos.forEach(esp=>{
       wd.forEach((d,di)=>{
         const tod=isToday(d);
-        const cellBg=tod?'rgba(200,169,110,.03)':'var(--surface)';
+        const cellBg=tod?'rgba(20,69,130,.04)':'var(--surface)';
         const dayStart=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
         const dayEnd=new Date(d.getFullYear(),d.getMonth(),d.getDate(),23,59,59);
 
@@ -973,7 +1000,7 @@ function rWeek(){
                 padding:4px 5px;box-sizing:border-box;cursor:pointer;overflow:hidden;
                 transition:opacity .15s;z-index:2">
               <div style="font-size:10px;font-weight:600;color:var(--text);line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;align-items:center;gap:3px">
-                ${ev.recorrente?'↻ ':''}${ev.titulo}${hasRegistro(ev)?'<span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:#e06060;flex-shrink:0"></span>':''}
+                ${ev.recorrente?'↻ ':''}${ev.titulo}${hasRegistro(ev)?'<span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--conf);flex-shrink:0"></span>':''}
               </div>
               ${ht>40?`<div style="font-size:9px;color:${accent};opacity:.7;font-family:'DM Mono',monospace;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
                 ${fmtT(ev.dataInicio)}–${fmtT(ev.dataFim)}
@@ -1012,7 +1039,7 @@ function rDay(){
   let h='<div class="cal-day"><div style="display:grid;grid-template-columns:52px 1fr;max-height:calc(100vh - 160px);overflow-y:auto"><div style="border-right:1px solid var(--border)">';
   for(let h2=DS;h2<23;h2++)h+='<div style="height:'+H+'px;border-bottom:1px solid var(--border);padding:4px 6px;font-family:DM Mono,monospace;font-size:10px;color:var(--text-dim);text-align:right">'+String(h2).padStart(2,'0')+'h</div>';
   h+='</div><div style="position:relative;border-left:1px solid var(--border)">';
-  for(let h2=DS;h2<23;h2++)h+='<div style="height:'+H+'px;border-bottom:1px solid rgba(37,42,56,.4)"></div>';
+  for(let h2=DS;h2<23;h2++)h+='<div style="height:'+H+'px;border-bottom:1px solid rgba(180,200,230,.5)"></div>';
   // Calcular layout sem sobreposição (mesmo algoritmo do view Semana)
   const dayStart=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate(),0,0,0);
   const dayEnd=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate(),23,59,59);
@@ -1194,7 +1221,7 @@ function showM(id){
       (ev.responsavel?'<div class="mf"><label>Responsável</label><span>'+ev.responsavel+'</span></div>':'')+
     '</div>'+
     (ev.observacoes?'<div class="mf"><label>Observações</label><div class="modal-notes">'+ev.observacoes+'</div></div>':'')+
-    (mae.datasRegistro?'<div class="mf" style="margin-top:4px"><label style="color:#e06060">● Registro / Gravação</label><span style="font-family:\'DM Mono\',monospace;font-size:12px">'+mae.datasRegistro+'</span></div>':'');
+    (mae.datasRegistro?'<div class="mf" style="margin-top:4px"><label style="color:var(--conf)">● Registro / Gravação</label><span style="font-family:\'DM Mono\',monospace;font-size:12px">'+mae.datasRegistro+'</span></div>':'');
   document.getElementById('mOverlay').classList.add('open');
 }
 function closeM(){document.getElementById('mOverlay').classList.remove('open');}
@@ -1228,19 +1255,9 @@ document.addEventListener('fullscreenchange',()=>{
 // Atualizar label ao navegar em modo apresentação
 
 // ─── GANTT (espaços × semana / dia) ─────────────────────────────────────────
-let ganttDia = new Date(cur);
-let ganttModo = 'dia';
-function setGanttModo(m){
-  ganttModo=m;
-  if(m==='dia'){ganttDia=new Date(cur);}else{ganttDia=null;}
-  const bD=document.getElementById('ganttBtnDia'),bS=document.getElementById('ganttBtnSem');
-  if(bD&&bS){bD.style.background=m==='dia'?'var(--accent2)':'var(--surface2)';bD.style.color=m==='dia'?'#000':'var(--text-muted)';bS.style.background=m==='semana'?'var(--accent2)':'var(--surface2)';bS.style.color=m==='semana'?'#000':'var(--text-muted)';}
-  render();
-}
+let ganttDia = null; // null = modo semana, Date = modo dia único
 
 function rGantt(){
-  if(ganttModo==='dia'&&!ganttDia) ganttDia=new Date(cur);
-  if(ganttModo==='semana') ganttDia=null;
   const dow=(cur.getDay()+6)%7;
   const mon=new Date(cur.getTime()-dow*86400000);mon.setHours(0,0,0,0);
   const sun=new Date(mon.getTime()+6*86400000);sun.setHours(23,59,59);
@@ -1286,10 +1303,8 @@ function rGantt(){
   // Linha de labels de hora (cabeçalho de horas)
   function hoursHeaderCell(stepMin){
     stepMin=stepMin||60;
-    const labelEvery=ganttDia?stepMin:180;
     let cell='<td style="position:relative;height:22px;padding:0;border:1px solid var(--border);background:var(--surface2)">';
     for(let m=0;m<=totalMin;m+=stepMin){
-      if(m%labelEvery!==0)continue;
       const hr2=DS+Math.floor(m/60);const min2=m%60;
       const pct2=(m/totalMin*100).toFixed(2);
       const lbl=min2===0?String(hr2).padStart(2,'0')+'h':String(hr2).padStart(2,'0')+':30';
@@ -1320,13 +1335,13 @@ function rGantt(){
   dias.forEach((d,i)=>{
     const tod=isToday(d);
     const dn=DN[(d.getDay()+6)%7];
-    h+=`<th
+    h+=`<th onclick="ganttDia=${ganttDia?'null':`new Date(${d.getFullYear()},${d.getMonth()},${d.getDate()})`};rGantt()"
       style="background:var(--surface2);border:1px solid var(--border);padding:6px 4px;text-align:center;cursor:pointer;transition:background .15s;user-select:none"
       onmouseover="this.style.background='var(--surface3,var(--surface))'"
       onmouseout="this.style.background='var(--surface2)'">
       <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;color:${tod?'var(--accent2)':'var(--text-dim)'}">${dn}</div>
       <div style="font-family:'DM Serif Display',serif;font-size:${ganttDia?'18':'14'}px;color:${tod?'var(--accent2)':'var(--text-muted)'}">${d.getDate()}</div>
-      </th>`;
+      ${ganttDia?'<div style="font-size:9px;font-family:DM Mono,monospace;color:var(--text-dim);margin-top:2px">← semana</div>':''}</th>`;
   });
 
   h+='</tr><tr>';
@@ -1346,18 +1361,10 @@ function rGantt(){
       let cell=`<td style="position:relative;height:40px;padding:0;border:1px solid var(--border);background:var(--surface);vertical-align:top">${ticksHtml()}`;
 
       dayEvs.forEach(ev=>{
-        let sMin,eMin;
-        if(ev.blocoLongo){
-          const turnos=parseHorarios(ev.horarios);
-          const sl=turnos.length?turnos[0]:null;
-          sMin=sl?Math.max((sl.hIni*60+sl.mIni)-(DS*60),0):0;
-          eMin=sl?Math.min((sl.hFim*60+sl.mFim)-(DS*60),totalMin):totalMin;
-        } else {
-          const s=ev.dataInicio<dayStart?dayStart:ev.dataInicio;
-          const e=ev.dataFim>dayEnd?dayEnd:ev.dataFim;
-          sMin=Math.max((s.getHours()-DS)*60+s.getMinutes(),0);
-          eMin=Math.min((e.getHours()-DS)*60+e.getMinutes(),totalMin);
-        }
+        const s=ev.dataInicio<dayStart?dayStart:ev.dataInicio;
+        const e=ev.dataFim>dayEnd?dayEnd:ev.dataFim;
+        const sMin=Math.max((s.getHours()-DS)*60+s.getMinutes(),0);
+        const eMin=Math.min((e.getHours()-DS)*60+e.getMinutes(),totalMin);
         if(eMin<=sMin)return;
         const left=(sMin/totalMin*100).toFixed(3);
         const width=Math.max(0.3,((eMin-sMin)/totalMin*100)).toFixed(3);
@@ -1397,6 +1404,24 @@ document.addEventListener('keydown',e=>{
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 autoLoad();
+
+// ─── THEME TOGGLE ─────────────────────────────────────────────────────────────
+(function(){
+  const btn = document.getElementById('themeBtn');
+  function applyTheme(dark){
+    document.documentElement.classList.toggle('dark', dark);
+    btn.textContent = dark ? '☀ Light' : '🌙 Escuro';
+    try{ localStorage.setItem('psc-theme', dark?'dark':'light'); }catch(e){}
+  }
+  window.toggleTheme = function(){
+    applyTheme(!document.documentElement.classList.contains('dark'));
+  };
+  // Restore preference on load — default is light
+  try{
+    const saved = localStorage.getItem('psc-theme');
+    applyTheme(saved === 'dark');
+  }catch(e){ applyTheme(false); }
+})();
 </script>
 </body>
 </html>
