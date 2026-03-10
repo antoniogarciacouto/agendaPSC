@@ -1,19 +1,19 @@
 ﻿"Título da atividade","Unidade","Bloco","Espaço","Data início","Data fim","Recorrente","Horários","Datas de Registro","Dia inteiro","Datas de Ocorrência","Subatividade","Área","Status","Responsável","Observações","Segunda"
-"Jamac","Santa Rita","Santa Rita","Galeria Santa Rita","01/01/2026","30/06/2026","Falso","10:00 - 19:00",,"Falso",,"Exposição","Artes Visuais","Confirmada",,,"Falso"
-"Clube Sesc de Leitores","Santa Rita","Santa Rita","Cinema","24/02/2026","24/02/2026","Falso","19:00-21:00",,"Falso",,"Roda de Conversa","Literatura","Realizada",,,"Falso"
-"Danças Livres","Caborê","Estúdios","Sala de Dança","11/03/2026","31/12/2026","True","10:00-12:00;19:00-21:00","11/03 - turma 01 - 10h e turma 02 - 19h","Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
-"Danças Sociais","Caborê","Estúdios","Sala de Dança","31/03/2026","30/11/2026","True","19:00 - 21:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
-"Decanto de Dança","Caborê","Estúdios","Sala de Dança","04/04/2026","30/11/2026","True","10:00 - 17:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
-"Decanto de Dança","Caborê","Estúdios","Sala de Dança","05/04/2026","30/11/2026","True","10:00 - 17:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
-"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","10/03/2026","30/11/2026","True","14:00 - 17:00","10/03 - 14h","Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
-"Vozes da Memória","Caborê","Estúdios","Sala de Ensaios","12/03/2026","30/11/2026","True","14:00 - 17:00","12/03 - 14h","Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
+"Jamac","Santa Rita","Santa Rita","Galeria Santa Rita","01/01/2026","05/07/2026","Falso","10:00 - 19:00",,"Falso",,"Exposição","Artes Visuais","Confirmada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Clube Sesc de Leitores","Santa Rita","Santa Rita","Cinema","24/02/2026","24/02/2026","Falso","19:00-21:00",,"Falso",,"Mediação","Literatura","Realizada","Diogo Schmidt Brunner",,"Falso"
+"Danças Livres","Caborê","Estúdios","Sala de Dança","11/03/2026","02/12/2026","True","10:00-12:00;19:00-21:00","11/03 - turma 01 - 10h e turma 02 - 19h","Falso",,"Curso","Artes Cênicas","Planejada","Maira Jeannyse Acunha Paiva",,"Falso"
+"Danças Sociais","Santa Rita",,"Sala de Artes Integradas","07/04/2026","30/04/2026","True","19:00 - 21:00",,"Falso",,"Curso","Artes Cênicas","Planejada","Maira Jeannyse Acunha Paiva",,"Falso"
+"Decanto de Dança","Santa Rita","Santa Rita","Sala de Artes Integradas","24/04/2026","24/10/2026","Falso","13:00 - 19:00","24/04, 22/05, 26/06, 27/06, 31/07, 01/08, 28/08, 25/09, 26/09, 24/10","Falso",,"Curso","Artes Cênicas","Confirmada","Maira Jeannyse Acunha Paiva",,"Falso"
+"Vozes da Memória","Santa Rita","Santa Rita","Sala de Artes Integradas","10/03/2026","13/08/2026","Falso","14:00 - 17:00","10/03 - 14h","Falso",,"Curso","Artes Cênicas","Planejada","Maira Jeannyse Acunha Paiva",,"Falso"
 "Curso Livre de Bordado","Caborê","Ateliês","Ateliê 1","01/04/2026","30/12/2026","True","10:00 - 12:00",,"Falso",,"Curso","Artes Cênicas","Planejada",,,"Falso"
-"Curso Livre de Desenho","Caborê","Ateliês","Ateliê 1","31/03/2026","30/11/2026","True","15:00 - 17:00",,"Falso",,"Curso","Artes Visuais","Planejada",,,"Falso"
-"Curso Livre de Desenho","Caborê","Ateliês","Ateliê 1","01/04/2026","31/12/2026","True","15:00 - 17:00",,"Falso",,"Curso","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","07/05/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","06/05/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","25/06/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
-"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","24/06/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada",,,"Falso"
+"Curso Livre de Desenho T1","Caborê","Ateliês","Ateliê 1","05/05/2026","01/12/2026","True","15:00 - 17:00",,"Falso",,"Curso","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Curso Livre de Desenho T2","Caborê","Ateliês","Ateliê 1","06/05/2026","02/12/2026","True","19:00 - 21:00",,"Falso",,"Curso","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Curso Livre de Desenho T3","Caborê","Ateliês","Ateliê 1","07/05/2026","03/12/2026","Falso","15:00 - 17:00",,"Falso",,"Curso","Artes Visuais","Confirmada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Curso Livre de Bordado","Santa Rita","Santa Rita","Sala de Oficinas","04/03/2026","02/12/2026","Falso","10:00 - 12:00",,"Falso",,"Curso","Artes Visuais","Confirmada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","07/05/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","06/05/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","25/06/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","24/06/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
 "Labmais","Caborê","Estúdios","Lab 1,Lab  2","02/06/2026","24/11/2026","True","18:00 - 21:00",,"Falso",,"Curso","Arte Educação","Planejada",,,"Falso"
 "Labmais","Caborê","Estúdios","Lab 1,Lab  2","04/06/2026","26/11/2026","True","18:00 - 21:00",,"Falso",,"Curso","Arte Educação","Planejada",,,"Falso"
 "SOPRA Oficina de Sopros","Caborê","Estúdios","Aula Música 1","04/04/2026","28/11/2026","True","09:00 - 12:00","11/04 e 23/05.","Falso",,"Oficina","Música","Confirmada","Guilherme Castro de Carvalho",,"Falso"
@@ -39,7 +39,7 @@ Quantidade de alunos: 30
 Turma: 700
 Instituição Escola:  E. M. Parque da Mangueira 
 Faixa etária dos alunos: 11-14 anos","Falso"
-"Visita Mediada a Exposição Malassombras","Santa Rita","Santa Rita","Mediação","12/03/2026","03/03/2026","Falso","10:00 - 11:00","12/03/2026 ","Falso",,"Mediação","Artes Visuais","Confirmada","Priscila Souza Rodrigues","Exposição: Malassombras
+"Visita Mediada a Exposição Malassombras","Santa Rita","Santa Rita","Mediação","12/03/2026","12/03/2026","Falso","10:00 - 11:00","12/03/2026 ","Falso",,"Mediação","Artes Visuais","Confirmada","Priscila Souza Rodrigues","Exposição: Malassombras
 Quantidade de alunos: 30
 Turma: 801
 Instituição Escola:  E. M. Parque da Mangueira 
@@ -71,3 +71,19 @@ Faixa etária dos alunos: 12-15 anos
 "Arte da Palavra - Criação Literária 2","Santa Rita","Santa Rita","Sala de Oficinas","06/10/2026","08/10/2026","Falso","18:30 - 21:30","08/10","Falso",,"Oficina","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
 "Arte da Palavra - Criação Literária 3","Santa Rita","Santa Rita","Sala de Oficinas","20/10/2026","22/10/2026","Falso","18:30 - 21:30","22/10","Falso",,"Oficina","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
 "Arte da Palavra - Oralidades 3","Santa Rita","Santa Rita","Sala de Artes Integradas","19/11/2026","19/11/2026","Falso","19:00 - 21:00","19/11","Falso",,"Apresentação","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Agendamento Cine Sesc","Santa Rita","Santa Rita","Cinema","18/03/2026","18/03/2026","Falso","11:00 - 13:00","18/03/2026","Falso",,"Mediação","Audiovisual","Confirmada","Priscila Souza Rodrigues","Filme: O auto da Compadecida 
+Quantidade: 12 alunos
+Turma: 3° ano do ensino médio 
+Instituição: ETHOS
+Faixa etária: 15-17","Falso"
+"Oficina de fotografia com Ratão Diniz","Santa Rita","Santa Rita","Cinema","23/06/2026","27/06/2026","Falso","14:00 - 17:00","25/06, 26/06, 27/06","Falso",,"Oficina","Artes Cênicas","Confirmada","Maira Jeannyse Acunha Paiva","As aulas necessitam de projeção em telão, sendo intercaladas com saídas externas.
+No dia 26/06 a turma irá registrar a abertura da exposição no Museu do Forte, ""Levante do Boi"".
+No sábado será no cinema, dia 27/06: as fotos realizadas pelos alunos serão vistas e terão comentários de Ratão Diniz, enquanto fechamento da oficina.","Falso"
+"I Residência Literária do Prêmio Sesc de Literatura - Formação de Mulheres Romancistas","Santa Rita","Santa Rita","Espaço Memória","23/11/2026","27/11/2026","Falso","09:00 - 18:00","23/11
+26/11","True",,"Outro","Literatura","Planejada","Diogo Schmidt Brunner",,"Falso"
+"Programação Sesc na Flip","Santa Rita","Santa Rita","Cinema,Espaço de Leitura,Espaço Memória,Galeria Santa Rita,Sala de Artes Integradas,Sala de Oficinas,Palco Café","23/07/2026","26/07/2026","Falso","10:00 - 22:00","23/07
+24/07
+25/07
+26/07","True",,"Palestra","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
+"Danças Sociais","Caborê","Estúdios","Sala de Dança","02/06/2026","03/12/2026","True","19:00 - 21:00",,"Falso",,"Curso","Artes Cênicas","Confirmada","Maira Jeannyse Acunha Paiva",,"Falso"
+"Fotoclube","Santa Rita","Santa Rita","Cinema","10/03/2026","10/03/2026","Falso","10:00 - 12:00",,"Falso","14/03, 21/03, 25/04, 23/05, 20/06, 18/07, 22/08, 26/08, 26/09, 24/10, 28/11, 19/12","Outro","Artes Visuais","Confirmada","Julia Bevilacqua Alves da Costa",,"Falso"
