@@ -12,6 +12,7 @@
 "Curso Livre de Bordado","Santa Rita","Santa Rita","Sala de Oficinas","04/03/2026","02/12/2026","Falso","10:00 - 12:00",,"Falso",,"Curso","Artes Visuais","Confirmada","Julia Bevilacqua Alves da Costa",,"Falso"
 "Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","07/05/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
 "Livro Ilustrado T1","Caborê","Ateliês","Ateliê 2","06/05/2026","06/05/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Livro Ilustrado T4","Caborê","Ateliês","Ateliê 1","14/10/2026","15/10/2026","Falso","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
 "Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","25/06/2026","True","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
 "Livro Ilustrado T2","Caborê","Ateliês","Ateliê 2","24/06/2026","24/06/2026","True","19:00 - 21:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
 "Labmais","Caborê","Estúdios","Lab 1,Lab  2","02/06/2026","24/11/2026","True","18:00 - 21:00",,"Falso",,"Curso","Arte Educação","Planejada",,,"Falso"
@@ -34,6 +35,9 @@ Quantidade de alunos: 30
 Turma: 901
 Instituição Escola:  E. M. Parque da Mangueira 
 Faixa etária dos alunos: 14-17 anos","Falso"
+"Livro Ilustrado T3","Caborê","Ateliês","Ateliê 1","27/08/2026","28/08/2026","Falso","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Livro Ilustrado T3","Caborê","Ateliês","Ateliê 1","27/08/2026","27/08/2026","Falso","19:00 - 21:00",,"Falso",,"Palestra","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
+"Livro Ilustrado T5","Caborê","Ateliês","Ateliê 1","23/03/2026","28/03/2026","Falso","09:00 - 13:00",,"Falso",,"Oficina","Artes Visuais","Planejada","Julia Bevilacqua Alves da Costa",,"Falso"
 "Visita Mediada Exposição Malassombras","Santa Rita","Santa Rita","Mediação","10/03/2026","10/03/2026","Falso","10:00 - 11:00","10/03/2026","Falso",,"Mediação","Artes Visuais","Confirmada","Priscila Souza Rodrigues"," Exposição: Malassombras
 Quantidade de alunos: 30
 Turma: 700
@@ -87,3 +91,4 @@ No sábado será no cinema, dia 27/06: as fotos realizadas pelos alunos serão v
 26/07","True",,"Palestra","Literatura","Confirmada","Diogo Schmidt Brunner",,"Falso"
 "Danças Sociais","Caborê","Estúdios","Sala de Dança","02/06/2026","03/12/2026","True","19:00 - 21:00",,"Falso",,"Curso","Artes Cênicas","Confirmada","Maira Jeannyse Acunha Paiva",,"Falso"
 "Fotoclube","Santa Rita","Santa Rita","Cinema","10/03/2026","10/03/2026","Falso","10:00 - 12:00",,"Falso","14/03, 21/03, 25/04, 23/05, 20/06, 18/07, 22/08, 26/08, 26/09, 24/10, 28/11, 19/12","Outro","Artes Visuais","Confirmada","Julia Bevilacqua Alves da Costa",,"Falso"
+,,,"[]","11/03/2026","11/03/2026","Falso","10:00 - 12:00",,"Falso",,,,,,,"Falso"
